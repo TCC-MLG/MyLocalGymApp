@@ -3,33 +3,52 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_buscar"
+            android:title="Buscar" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_status_exame"
+            android:title="Status exame" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_favoritos"
+            android:title="Favoritos" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_treinos"
+            android:title="Treinos" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Carteira">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_saldo"
+                android:title="Saldo" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_recarga"
+                android:title="Recarga" />
+            <item
+                android:id="@+id/nav_solicitar_reembolso"
+                android:title="Solicitar reembolso" />
+        </menu>
+    </item>
+
+    <item android:title="Histórico">
+        <menu>
+            <item
+                android:id="@+id/nav_ultimas_academias"
+                android:title="Ultimas academias" />
+            <item
+                android:id="@+id/nav_ultimos_treinos"
+                android:title="Ultimos treinos" />
+        </menu>
+    </item>
+
+    <item android:title="Configuração">
+        <menu>
+            <item
+                android:id="@+id/nav_dados_pessoais"
+                android:title="Dados pessoais" />
+            <item
+                android:id="@+id/nav_opcoes_pesquisa"
+                android:title="Opções de pesquisa" />
         </menu>
     </item>
 
