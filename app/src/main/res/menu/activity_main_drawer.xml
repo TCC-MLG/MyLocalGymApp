@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mn_login"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Login" />
+        <item
+            android:id="@+id/mn_buscar"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Buscar" />
+        <item
+            android:id="@+id/mn_statusexame"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Status exame" />
+        <item
+            android:id="@+id/mn_favoritos"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Favoritos" />
+        <item
+            android:id="@+id/mn_treinos"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Treinos" />
+
+    </group>
+    <item android:title="CARTEIRA">
+        <menu>
+            <item
+                android:id="@+id/mnSaldo"
+                android:title="Saldo" />
+            <item
+                android:id="@+id/mnRecarga"
+                android:title="Recarga" />
+        </menu>
+    </item>
+
+    <item android:title="HISTÓRICO">
+        <menu>
+            <item
+                android:id="@+id/mnUacadem"
+                android:title="Ultimas academias" />
+            <item
+                android:id="@+id/mnUtreinos"
+                android:title="Ultimos treinos" />
+        </menu>
+    </item>
+
+    <item android:title="CONFIGURAÇÕES">
+        <menu>
+            <item
+                android:id="@+id/mnDpessoais"
+                android:title="Dados Pessoais" />
+            <item
+                android:id="@+id/mnOpesquisa"
+                android:title="Opções de pesquisa" />
+        </menu>
+    </item>
+
+</menu>
