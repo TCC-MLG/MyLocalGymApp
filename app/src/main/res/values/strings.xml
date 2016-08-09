@@ -7,4 +7,11 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="erro_msg_email">Endereço de e-mail inválido</string>
+    <string name="erro_msg_password">A senha deve conter 8 ou mais caracteres</string>
+    <string name="erro_msg_compara_password">As senhas não são iguais</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
+

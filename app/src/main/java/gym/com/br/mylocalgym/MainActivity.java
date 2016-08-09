@@ -12,10 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager;
+    public MapsFragment3 maps;
+    private GoogleMap myMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +38,31 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Configurações para mapa
+
         fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        transaction.add(R.id.conteiner, new MapsFragment(), "MapsFragment");
+        MapsFragment3 maps = new MapsFragment3();
+
+        transaction.add(R.id.conteiner, maps, "MapsFragment3");
         transaction.commitAllowingStateLoss();
 
+        //
+
+//        FragmentManager myFragmentManager = getSupportFragmentManager();
+//        MapsFragment3 myMapFragment
+//                = (MapsFragment3) myFragmentManager.findFragmentById(R.id.conteiner);
+//        myMap = myMapFragment.getMap();
+//
+//        myMap.setMyLocationEnabled(true);
+//
+//        myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//        //myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        //myMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//        //myMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+//
+//        myMap.setOnMapClickListener(this);
     }
 
 
@@ -110,30 +132,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.mnOpesquisa:
                 break;
         }
-
-//        if (id == R.id.mn_login) {
-//
-//        } else if (id == R.id.mn_buscar) {
-//
-//        } else if (id == R.id.mn_statusexame) {
-//
-//        } else if (id == R.id.mn_favoritos) {
-//
-//        } else if (id == R.id.mn_treinos) {
-//
-//        } else if (id == R.id.mnSaldo) {
-//
-//        } else if (id == R.id.mnRecarga) {
-//
-//        } else if (id == R.id.mnUacadem) {
-//
-//        } else if (id == R.id.mnUtreinos) {
-//
-//        } else if (id == R.id.mnDpessoais) {
-//
-//        } else if (id == R.id.mnOpesquisa) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

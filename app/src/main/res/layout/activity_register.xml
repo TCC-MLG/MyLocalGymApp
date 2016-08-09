@@ -1,139 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="gym.com.br.mylocalgym.RegisterActivity">
-    <!--android:background="@color/colorlogin">-->
 
-    <EditText
-        android:id="@+id/mApe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Apelido"
-        android:layout_below="@+id/mNome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rnomec"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/rNomec"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome completo"
+            android:inputType="textPersonName"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/mEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email "
-        android:layout_below="@+id/mApe"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_remail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/rEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"/>
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rapelido"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/mTel"
-        android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rApe"
+            android:hint="Apelido"
+            android:inputType="textPersonName"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rtelefone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/rTelefone"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Telefone"
-        android:layout_below="@+id/mEmail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:inputType="phone"/>
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rcpf"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/mCpf"
-        android:layout_width="wrap_content"
+        android:id="@+id/rCpf"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="CPF"
-        android:layout_below="@+id/mTel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_restado"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/mEstado"
-        android:layout_width="wrap_content"
+        android:id="@+id/rEstado"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Estado"
-        android:layout_below="@+id/mCpf"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/mCpf"
-        android:layout_alignEnd="@+id/mCpf" />
+        android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rcidade"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/rCidade"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cidade"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rendereco"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/mEnd"
-        android:layout_width="wrap_content"
+        android:id="@+id/rEnd"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Endereço"
-        android:layout_below="@+id/mCidade"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rpassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/mPassword"
-        android:layout_width="wrap_content"
+        android:id="@+id/rPassword"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/mEnd"
-        android:ems="10"
         android:hint="Senha"
         android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_rrpassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/mRPassword"
-        android:layout_width="wrap_content"
+        android:id="@+id/rRPassword"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/mPassword"
-        android:ems="10"
         android:hint="Repetir senha"
         android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/mOk"
-        android:layout_width="wrap_content"
+        android:id="@+id/rCadastrar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
-        android:layout_below="@+id/mRPassword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="@color/colorlogin"
+        android:layout_marginTop="15dp" />
 
-    <EditText
-        android:id="@+id/mNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nome completo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+</LinearLayout>
 
-    <EditText
-        android:id="@+id/mCidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Cidade"
-        android:layout_below="@+id/mEstado"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-</RelativeLayout>
+</ScrollView>
