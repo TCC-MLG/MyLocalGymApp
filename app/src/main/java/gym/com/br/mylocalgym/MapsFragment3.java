@@ -49,7 +49,7 @@ public class MapsFragment3 extends SupportMapFragment implements OnMapReadyCallb
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
-
+//teste
 //        }catch (SecurityException ex){
 //            Log.e(TAG,"Error", ex);
 //        }
