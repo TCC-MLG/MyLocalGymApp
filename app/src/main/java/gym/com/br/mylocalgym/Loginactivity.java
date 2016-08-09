@@ -91,6 +91,9 @@ public class Loginactivity extends AppCompatActivity {
 
     // validar a senha
     private boolean validarPassword(){
+
+        inputLayoutPassword.setErrorEnabled(true);
+
         if(lgPassword.getText().toString().trim().length() < 8) {
             inputLayoutPassword.setError(getString(R.string.erro_msg_password));
             requestFocus(lgPassword);
@@ -106,6 +109,7 @@ public class Loginactivity extends AppCompatActivity {
         String email = lgEmail.getText().toString().trim();
 
         if (email.isEmpty() || !isValidEmail(email)) {
+            inputLayoutEmail.isErrorEnabled();
             inputLayoutEmail.setError(getString(R.string.erro_msg_email));
             requestFocus(lgEmail);
             return false;

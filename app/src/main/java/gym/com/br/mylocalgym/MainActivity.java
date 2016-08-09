@@ -3,6 +3,7 @@ package gym.com.br.mylocalgym;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.GoogleMap;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager;
-    public MapsFragment3 maps;
-    private GoogleMap myMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,32 +34,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Configurações para mapa
 
+        //Configurações para mapa
         fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        MapsFragment3 maps = new MapsFragment3();
-
-        transaction.add(R.id.conteiner, maps, "MapsFragment3");
+        transaction.add(R.id.conteiner, new MapsFragment3(), "MapsFragment3");
         transaction.commitAllowingStateLoss();
-
-        //
-
-//        FragmentManager myFragmentManager = getSupportFragmentManager();
-//        MapsFragment3 myMapFragment
-//                = (MapsFragment3) myFragmentManager.findFragmentById(R.id.conteiner);
-//        myMap = myMapFragment.getMap();
-//
-//        myMap.setMyLocationEnabled(true);
-//
-//        myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-//        //myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//        //myMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//        //myMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-//
-//        myMap.setOnMapClickListener(this);
     }
 
 
@@ -137,4 +116,18 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    //Utilizar para chamar outros fragmentos
+    private void mostraFragmento(Fragment fragment, String name){
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        transaction.replace(R.id.conteiner, fragment, name);
+        transaction.commit();
+    }
+
+
+
+
+
 }
