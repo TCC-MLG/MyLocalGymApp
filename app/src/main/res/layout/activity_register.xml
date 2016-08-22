@@ -21,7 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/rNomec"
+            android:id="@+id/r_Nomec"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Nome completo"
@@ -33,7 +33,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/rEmail"
+            android:id="@+id/r_Email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -47,7 +47,7 @@
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rApe"
+            android:id="@+id/r_Ape"
             android:hint="Apelido"
             android:inputType="textPersonName"/>
     </android.support.design.widget.TextInputLayout>
@@ -57,7 +57,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/rTelefone"
+        android:id="@+id/r_Telefone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Telefone"
@@ -69,10 +69,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/rCpf"
+        android:id="@+id/r_Cpf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="CPF"
+        android:maxLength="11"
         android:inputType="number"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -81,7 +82,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/rEstado"
+        android:id="@+id/r_Estado"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Estado"
@@ -93,7 +94,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/rCidade"
+            android:id="@+id/r_Cidade"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Cidade"
@@ -105,7 +106,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/rEnd"
+        android:id="@+id/r_End"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Endereço"
@@ -117,7 +118,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/rPassword"
+        android:id="@+id/r_Password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Senha"
@@ -129,7 +130,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/rRPassword"
+        android:id="@+id/r_RPassword"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Repetir senha"
@@ -137,7 +138,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/rCadastrar"
+        android:id="@+id/r_Cadastrar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar"

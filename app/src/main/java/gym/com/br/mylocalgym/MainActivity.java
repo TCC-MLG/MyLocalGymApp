@@ -1,6 +1,5 @@
 package gym.com.br.mylocalgym;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,16 +35,32 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Recupera sessão e checa login
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+        sessionManager.checkLogin();
+
+        // Pega da sessão as informações do usuário
+        HashMap<String, String> user = sessionManager.getUserDetails();
+
+        // Inicia o header do menu drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView emailText = (TextView) headerView.findViewById(R.id.headerEmail);
+        TextView apelidoText = (TextView) headerView.findViewById(R.id.headerapelido);
+
+        // Recupera as informações do user e as coloca no header
+        apelidoText.setText(user.get(SessionManager.KEY_NAME));
+        emailText.setText(user.get(SessionManager.KEY_EMAIL));
+
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        //Configurações para mapa
+        // Configurações para mapa
         fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        transaction.add(R.id.conteiner, new MapsFragment3(), "MapsFragment3");
+        transaction.add(R.id.conteiner, new MapsFragment(), "MapsFragment");
         transaction.commitAllowingStateLoss();
     }
 
@@ -55,13 +75,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -85,12 +98,8 @@ public class MainActivity extends AppCompatActivity
 
         switch (id)
         {
-            case R.id.mn_login:
-                //Chama outra Activity
-                       Intent Login = new Intent(MainActivity.this, Loginactivity.class);
-                        MainActivity.this.startActivity(Login);
-                break;
             case R.id.mn_buscar:
+                onSearchRequested();
                 break;
             case R.id.mn_statusexame:
                 break;
@@ -98,17 +107,22 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.mn_treinos:
                 break;
-            case R.id.mnSaldo:
+            case R.id.mn_Saldo:
                 break;
-            case R.id.mnRecarga:
+            case R.id.mn_Recarga:
                 break;
-            case R.id.mnUacadem:
+            case R.id.mn_Uacadem:
                 break;
-            case R.id.mnUtreinos:
+            case R.id.mn_Utreinos:
                 break;
-            case R.id.mnDpessoais:
+            case R.id.mn_Dpessoais:
                 break;
-            case R.id.mnOpesquisa:
+            case R.id.mn_Opesquisa:
+                break;
+            case R.id.mn_Logoff:
+                //chama sessionManager para apagar informações do usuário
+                SessionManager sessionManager = new SessionManager(getApplicationContext());
+                sessionManager.logoutUser();
                 break;
         }
 

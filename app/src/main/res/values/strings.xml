@@ -10,6 +10,25 @@
     <string name="erro_msg_email">Endereço de e-mail inválido</string>
     <string name="erro_msg_password">A senha deve conter 8 ou mais caracteres</string>
     <string name="erro_msg_compara_password">As senhas não são iguais</string>
+    <string name="erro_msg_nome">Informar o nome completo</string>
+    <string name="erro_msg_ape">Informar um apelido</string>
+    <string name="erro_msg_telefone">Informar um telefone</string>
+    <string name="erro_msg_cpf">CPF inválido</string>
+    <string name="erro_msg_estado">Informar Estado</string>
+    <string name="erro_msg_cidade">Informar Cidade</string>
+    <string name="erro_msg_end">Informe seu Endereço</string>
+    <string name="login_fail">Senha ou o email desconhecidos</string>
+    <string name="login_ok">OK! login realizado com sucesso.</string>
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

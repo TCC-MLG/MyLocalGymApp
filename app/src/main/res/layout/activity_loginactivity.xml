@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="gym.com.br.mylocalgym.Loginactivity"
+    tools:context="gym.com.br.mylocalgym.SignInActivity"
     android:orientation="vertical">
 
     <TextView
@@ -27,7 +27,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lgEmail"
+        android:id="@+id/lg_Email"
         android:hint="E-mail"
         android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
@@ -37,7 +37,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <EditText
-        android:id="@+id/lgPassword"
+        android:id="@+id/lg_Password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
@@ -46,7 +46,7 @@
 
 
     <Button
-        android:id="@+id/lgLogin"
+        android:id="@+id/lg_Login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorlogin"
@@ -60,5 +60,5 @@
         android:text="Registre Aqui"
         android:textColor="@color/colorlogin"
         android:gravity="center"
-        android:id="@+id/lgRegisterLink" />
+        android:id="@+id/lg_RegisterLink" />
 </LinearLayout>

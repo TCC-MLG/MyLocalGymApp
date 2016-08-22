@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/mn_login"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Login" />
+        <!--<item-->
+            <!--android:id="@+id/mn_login"-->
+            <!--android:icon="@drawable/ic_menu_send"-->
+            <!--android:title="Login" />-->
         <item
             android:id="@+id/mn_buscar"
             android:icon="@drawable/ic_search_black_24dp"
-            android:title="Buscar" />
+            android:title="Buscar"/>
         <item
             android:id="@+id/mn_statusexame"
             android:icon="@drawable/ic_note_add_black_24dp"
@@ -17,20 +17,20 @@
         <item
             android:id="@+id/mn_favoritos"
             android:icon="@drawable/ic_stars_black_24dp"
-            android:title="Favoritos" />
+            android:title="Favoritos"/>
         <item
             android:id="@+id/mn_treinos"
             android:icon="@drawable/ic_accessibility_black_24dp"
-            android:title="Treinos" />
+            android:title="Treinos"/>
 
     </group>
     <item android:title="CARTEIRA">
         <menu>
             <item
-                android:id="@+id/mnSaldo"
+                android:id="@+id/mn_Saldo"
                 android:title="Saldo" />
             <item
-                android:id="@+id/mnRecarga"
+                android:id="@+id/mn_Recarga"
                 android:title="Recarga" />
         </menu>
     </item>
@@ -38,10 +38,10 @@
     <item android:title="HISTÓRICO">
         <menu>
             <item
-                android:id="@+id/mnUacadem"
+                android:id="@+id/mn_Uacadem"
                 android:title="Ultimas academias" />
             <item
-                android:id="@+id/mnUtreinos"
+                android:id="@+id/mn_Utreinos"
                 android:title="Ultimos treinos" />
         </menu>
     </item>
@@ -49,11 +49,19 @@
     <item android:title="CONFIGURAÇÕES">
         <menu>
             <item
-                android:id="@+id/mnDpessoais"
+                android:id="@+id/mn_Dpessoais"
                 android:title="Dados Pessoais" />
             <item
-                android:id="@+id/mnOpesquisa"
+                android:id="@+id/mn_Opesquisa"
                 android:title="Opções de pesquisa" />
+        </menu>
+    </item>
+
+    <item android:title="MINHA CONTA">
+        <menu>
+            <item
+                android:id="@+id/mn_Logoff"
+                android:title="Logoff" />
         </menu>
     </item>
 

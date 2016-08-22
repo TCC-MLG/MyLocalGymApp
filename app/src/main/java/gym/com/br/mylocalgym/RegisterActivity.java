@@ -1,6 +1,7 @@
 package gym.com.br.mylocalgym;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,16 +25,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     TextInputLayout inputLayoutEmail, inputLayoutPassword, inputLayoutrPassword;
     private boolean ValCampos;
-    private EditText rNomec;
-    private EditText rEmail;
-    private EditText rApe;
-    private EditText rTelefone;
-    private EditText rCpf;
-    private EditText rEstado;
-    private EditText rCidade;
-    private EditText rEnd;
-    private EditText rPassword;
-    private EditText rRPassword;
+    private EditText rNomec, rEmail, rApe, rTelefone, rCpf, rEstado, rCidade, rEnd, rPassword, rRPassword;
     private Button rCadastrar;
 
     @Override
@@ -45,17 +37,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_rpassword);
         inputLayoutrPassword = (TextInputLayout) findViewById(R.id.input_layout_rrpassword);
 
-        rNomec = (EditText) findViewById(R.id.rNomec);
-        rEmail = (EditText) findViewById(R.id.rEmail);
-        rApe = (EditText) findViewById(R.id.rApe);
-        rTelefone = (EditText) findViewById(R.id.rTelefone);
-        rCpf = (EditText) findViewById(R.id.rCpf);
-        rEstado = (EditText) findViewById(R.id.rEstado);
-        rCidade = (EditText) findViewById(R.id.rCidade);
-        rEnd = (EditText) findViewById(R.id.rEnd);
-        rPassword = (EditText) findViewById(R.id.rPassword);
-        rRPassword = (EditText) findViewById(R.id.rRPassword);
-        rCadastrar = (Button) findViewById(R.id.rCadastrar);
+        rNomec = (EditText) findViewById(R.id.r_Nomec);
+        rEmail = (EditText) findViewById(R.id.r_Email);
+        rApe = (EditText) findViewById(R.id.r_Ape);
+        rTelefone = (EditText) findViewById(R.id.r_Telefone);
+        rCpf = (EditText) findViewById(R.id.r_Cpf);
+        rEstado = (EditText) findViewById(R.id.r_Estado);
+        rCidade = (EditText) findViewById(R.id.r_Cidade);
+        rEnd = (EditText) findViewById(R.id.r_End);
+        rPassword = (EditText) findViewById(R.id.r_Password);
+        rRPassword = (EditText) findViewById(R.id.r_RPassword);
+        rCadastrar = (Button) findViewById(R.id.r_Cadastrar);
+
+//        Spinner spinner = (Spinner) findViewById(R.id.planets_spinner);
+//// Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.planets_array, android.R.layout.simple_spinner_item);
+//// Specify the layout to use when the list of choices appears
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//// Apply the adapter to the spinner
+//        spinner.setAdapter(adapter);
 
         rCadastrar.setOnClickListener(this);
 
@@ -104,11 +105,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         ValCampos=true;
         Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_LONG).show();
+        Intent userCadastrado = new Intent(RegisterActivity.this, SignInActivity.class);
+        startActivity(userCadastrado);
+        finish();
     }
 
     // validar a senha
     private boolean validarPassword() {
-        if (rPassword.getText().toString().trim().length() < 8) {
+        if (rPassword.getText().toString().trim().length() < 1) {
             inputLayoutPassword.setError(getString(R.string.erro_msg_password));
             requestFocus(rPassword);
             return false;
@@ -120,14 +124,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     // Compara as senhas informadas
     private boolean comparaPassword() {
-        if (rPassword.getText().toString().trim() != rRPassword.getText().toString().trim()) {
+        if (!rPassword.getText().toString().equals(rRPassword.getText().toString())){
             inputLayoutPassword.setError(getString(R.string.erro_msg_compara_password));
             requestFocus(rRPassword);
             return false;
         } else {
             inputLayoutrPassword.setErrorEnabled(false);
         }
-
         return true;
     }
 
