@@ -1,10 +1,12 @@
-package gym.com.br.mylocalgym;
+package gym.com.br.mylocalgym.utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.util.HashMap;
+
+import gym.com.br.mylocalgym.activitys.SignInActivity;
 
 /**
  * Created by Ochefedagoma on 12/08/2016.

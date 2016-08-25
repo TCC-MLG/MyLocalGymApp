@@ -1,4 +1,4 @@
-package gym.com.br.mylocalgym;
+package gym.com.br.mylocalgym.activitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import gym.com.br.mylocalgym.MainActivity;
+import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.utils.SessionManager;
+
 public class SignInActivity extends AppCompatActivity {
 
     //text
@@ -29,7 +33,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginactivity);
+        setContentView(R.layout.activity_signinactivity);
 
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
@@ -47,6 +51,8 @@ public class SignInActivity extends AppCompatActivity {
         lgLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inputLayoutEmail.setErrorEnabled(false);
+                inputLayoutPassword.setErrorEnabled(false);
                 hideKeyboard();
                 submitForm();
 //                String vEmail = inputLayoutEmail.getEditText().getText().toString();
@@ -57,7 +63,7 @@ public class SignInActivity extends AppCompatActivity {
         lgRegisterlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Register = new Intent(SignInActivity.this, TesteActivity.class);
+                Intent Register = new Intent(SignInActivity.this, FormularioActivity.class);
                 SignInActivity.this.startActivity(Register);
             }
         });

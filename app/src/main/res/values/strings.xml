@@ -19,6 +19,7 @@
     <string name="erro_msg_end">Informe seu Endereço</string>
     <string name="login_fail">Senha ou o email desconhecidos</string>
     <string name="login_ok">OK! login realizado com sucesso.</string>
+
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

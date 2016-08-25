@@ -1,4 +1,4 @@
-package gym.com.br.mylocalgym;
+package gym.com.br.mylocalgym.fragments;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -143,4 +143,5 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     public void onProviderDisabled(String provider) {
         Toast.makeText(getActivity(), "Provider desabilitado :): "+ provider, Toast.LENGTH_LONG).show();
     }
+
 }

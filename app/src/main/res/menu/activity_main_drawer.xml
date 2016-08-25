@@ -28,10 +28,7 @@
         <menu>
             <item
                 android:id="@+id/mn_Saldo"
-                android:title="Saldo" />
-            <item
-                android:id="@+id/mn_Recarga"
-                android:title="Recarga" />
+                android:title="Saldo/Recarga" />
         </menu>
     </item>
 
@@ -46,19 +43,11 @@
         </menu>
     </item>
 
-    <item android:title="CONFIGURAÇÕES">
+    <item android:title="MINHA CONTA">
         <menu>
             <item
                 android:id="@+id/mn_Dpessoais"
                 android:title="Dados Pessoais" />
-            <item
-                android:id="@+id/mn_Opesquisa"
-                android:title="Opções de pesquisa" />
-        </menu>
-    </item>
-
-    <item android:title="MINHA CONTA">
-        <menu>
             <item
                 android:id="@+id/mn_Logoff"
                 android:title="Logoff" />

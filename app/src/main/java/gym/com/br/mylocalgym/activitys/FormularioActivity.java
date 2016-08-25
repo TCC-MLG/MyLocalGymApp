@@ -1,5 +1,6 @@
-package gym.com.br.mylocalgym;
+package gym.com.br.mylocalgym.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +8,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import static gym.com.br.mylocalgym.ValidaCampos.*;
+import gym.com.br.mylocalgym.R;
 
-public class TesteActivity extends AppCompatActivity implements View.OnClickListener {
+import static gym.com.br.mylocalgym.utils.ValidaCampos.*;
+
+public class FormularioActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextInputLayout inputLayoutEmail, inputLayoutPassword, inputLayoutrPassword, inputLayoutrNamec;
     TextInputLayout inputLayoutrApe, inputLayoutTelefone, inputLayoutCpf, inputLayoutEstado, inputLayoutCidade, inputLayoutEnd;
@@ -54,17 +58,7 @@ public class TesteActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        inputLayoutEmail.setErrorEnabled(false);
-        inputLayoutrNamec.setErrorEnabled(false);
-        inputLayoutEmail.setErrorEnabled(false);
-        inputLayoutPassword.setErrorEnabled(false);
-        inputLayoutrPassword.setErrorEnabled(false);
-        inputLayoutrApe.setErrorEnabled(false);
-        inputLayoutTelefone.setErrorEnabled(false);
-        inputLayoutCpf.setErrorEnabled(false);
-        inputLayoutEstado.setErrorEnabled(false);
-        inputLayoutCidade.setErrorEnabled(false);
-        inputLayoutEnd.setErrorEnabled(false);
+        errorFalse();
         checkInputLayout();
     }
 
@@ -102,8 +96,12 @@ public class TesteActivity extends AppCompatActivity implements View.OnClickList
         }
         //Todos validados
         else {
-            inputLayoutEmail.setError("OK");
-            requestFocus(rEmail);
+            errorFalse();
+            requestFocus(rCadastrar);
+            Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_LONG).show();
+            Intent userCadastrado = new Intent(FormularioActivity.this, SignInActivity.class);
+            startActivity(userCadastrado);
+            finish();
         }
     }
 
@@ -112,6 +110,20 @@ public class TesteActivity extends AppCompatActivity implements View.OnClickList
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+
+    private void errorFalse(){
+        inputLayoutEmail.setErrorEnabled(false);
+        inputLayoutrNamec.setErrorEnabled(false);
+        inputLayoutEmail.setErrorEnabled(false);
+        inputLayoutPassword.setErrorEnabled(false);
+        inputLayoutrPassword.setErrorEnabled(false);
+        inputLayoutrApe.setErrorEnabled(false);
+        inputLayoutTelefone.setErrorEnabled(false);
+        inputLayoutCpf.setErrorEnabled(false);
+        inputLayoutEstado.setErrorEnabled(false);
+        inputLayoutCidade.setErrorEnabled(false);
+        inputLayoutEnd.setErrorEnabled(false);
     }
 
 }

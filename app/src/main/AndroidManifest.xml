@@ -32,15 +32,16 @@
             android:value="@integer/google_play_services_version" />
 
         <!-- <activity android:name=".DashBoard" android:label="@string/title_activity_maps"></activity> -->
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".Mostra_Activity" />
+        <activity android:name=".activitys.SignInActivity" />
+        <activity android:name=".activitys.RegisterActivity" />
+        <activity android:name=".activitys.Mostra_Activity" />
 
         <!-- <activity -->
         <!-- android:name=".MapsFragment" -->
         <!-- android:label="@string/title_activity_maps"> -->
         <!-- </activity> -->
-        <activity android:name=".TesteActivity" />
+        <activity android:name=".activitys.FormularioActivity" />
+        <activity android:name=".fragments.SaldoFragment" />
     </application>
 
 </manifest>

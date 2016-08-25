@@ -1,4 +1,4 @@
-package gym.com.br.mylocalgym;
+package gym.com.br.mylocalgym.activitys;
 
 
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import gym.com.br.mylocalgym.R;
 
 
 //import com.android.volley.RequestQueue;

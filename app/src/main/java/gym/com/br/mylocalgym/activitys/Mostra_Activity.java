@@ -1,10 +1,12 @@
-package gym.com.br.mylocalgym;
+package gym.com.br.mylocalgym.activitys;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.*;
+
+import gym.com.br.mylocalgym.R;
 
 public class Mostra_Activity extends AppCompatActivity implements View.OnClickListener {
 
