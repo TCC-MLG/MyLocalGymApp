@@ -126,8 +126,7 @@ public class MainActivity extends AppCompatActivity
                 Saldo.commitAllowingStateLoss();
 
                 break;
-            case R.id.mn_Recarga:
-                break;
+
             case R.id.mn_Uacadem:
                 break;
             case R.id.mn_Utreinos:
@@ -141,8 +140,7 @@ public class MainActivity extends AppCompatActivity
                 DPessoais.addToBackStack("DadosPe");
                 DPessoais.commitAllowingStateLoss();
                 break;
-            case R.id.mn_Opesquisa:
-                break;
+
             case R.id.mn_Logoff:
                 //chama sessionManager para apagar informações do usuário
                 SessionManager sessionManager = new SessionManager(getApplicationContext());

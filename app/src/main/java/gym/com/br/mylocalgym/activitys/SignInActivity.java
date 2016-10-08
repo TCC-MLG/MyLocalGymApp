@@ -18,12 +18,16 @@ import android.widget.Toast;
 
 import gym.com.br.mylocalgym.MainActivity;
 import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.services.LoginServices;
 import gym.com.br.mylocalgym.utils.SessionManager;
 
 public class SignInActivity extends AppCompatActivity {
 
     //text
     private TextInputLayout inputLayoutEmail, inputLayoutPassword;
+
+    private LoginServices loginService;
+
 
     //botões
     private EditText lgEmail, lgPassword;
@@ -83,8 +87,13 @@ public class SignInActivity extends AppCompatActivity {
 
     //Utilizado quando o login for validado
     public void doLogin() {
-        boolean resultado=true;
+        boolean resultado=false;
 
+        this.loginService = new LoginServices();
+
+        Object cliente =  this.loginService.autenticar(lgEmail.getText().toString(), lgPassword.getText().toString());
+
+        resultado = cliente != null;
         //*****************************************************************************************
         // Resultado está sendo tratado como um select no banco - Colocar as validações com o banco de dados
 
