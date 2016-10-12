@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import gym.com.br.mylocalgym.MainActivity;
 import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.presenters.LoginPresenter;
 import gym.com.br.mylocalgym.services.LoginServices;
 import gym.com.br.mylocalgym.utils.SessionManager;
 
@@ -91,7 +92,7 @@ public class SignInActivity extends AppCompatActivity {
 
         this.loginService = new LoginServices();
 
-        Object cliente =  this.loginService.autenticar(lgEmail.getText().toString(), lgPassword.getText().toString());
+        LoginPresenter cliente =  this.loginService.autenticar(lgEmail.getText().toString(), lgPassword.getText().toString());
 
         resultado = cliente != null;
         //*****************************************************************************************
@@ -100,7 +101,7 @@ public class SignInActivity extends AppCompatActivity {
         if (resultado){
             //Cria uma sessão para o login do usuário
             SessionManager sessionManager = new SessionManager(getApplicationContext());
-            sessionManager.createLoginSession("Jorge", lgEmail.getText().toString());
+            sessionManager.createLoginSession(cliente.getEmail(), lgEmail.getText().toString());
 
             Toast.makeText(getApplicationContext(), getString(R.string.login_ok), Toast.LENGTH_SHORT).show();
 

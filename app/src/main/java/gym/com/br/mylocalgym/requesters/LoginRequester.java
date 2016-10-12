@@ -1,19 +1,13 @@
 package gym.com.br.mylocalgym.requesters;
 
 import android.os.StrictMode;
-import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
-import java.io.IOException;
-import java.io.InputStream;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import gym.com.br.mylocalgym.models.Greeting;
+import gym.com.br.mylocalgym.presenters.LoginPresenter;
 
 /**
  * Created by Luciano on 08/10/2016.
@@ -27,41 +21,20 @@ public class LoginRequester {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-
     }
 
 
-    public Object autenticar(String email, String senha){
+    public LoginPresenter autenticar(String email, String senha){
 
         this.ativarPolicy();
 
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/login/autenticar/"+email+"/"+senha+"";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        LoginPresenter login = restTemplate.getForObject(url, LoginPresenter.class);
 
 
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("http://rest-service.guides.spring.io/greeting");
-
-        HttpResponse response;
-        try {
-
-            response = client.execute(request);
-
-            //Greeting greeting = objectMapper.readValue(response.getEntity().getContent(), MyObject.class);
-
-            Log.d("Response of GET request", response.toString());
-
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        System.out.print("opa");
-
-
-        return new Object();
+        return login;
     }
 
 
