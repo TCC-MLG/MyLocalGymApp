@@ -11,10 +11,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.models.CadastrarCliente;
+import gym.com.br.mylocalgym.services.ClienteService;
 
 import static gym.com.br.mylocalgym.utils.ValidaCampos.*;
 
 public class FormularioActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ClienteService clienteService;
 
     TextInputLayout inputLayoutEmail, inputLayoutPassword, inputLayoutrPassword, inputLayoutrNamec;
     TextInputLayout inputLayoutrApe, inputLayoutTelefone, inputLayoutCpf, inputLayoutEstado, inputLayoutCidade, inputLayoutEnd;
@@ -96,12 +100,34 @@ public class FormularioActivity extends AppCompatActivity implements View.OnClic
         }
         //Todos validados
         else {
-            errorFalse();
-            requestFocus(rCadastrar);
-            Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_LONG).show();
-            Intent userCadastrado = new Intent(FormularioActivity.this, SignInActivity.class);
-            startActivity(userCadastrado);
-            finish();
+
+            CadastrarCliente cliente = new CadastrarCliente();
+            cliente.setNome(this.rNomec.getText().toString());
+            cliente.setEmail(this.rEmail.getText().toString());
+            cliente.setApelido(this.rApe.getText().toString());
+            cliente.setTelefone(this.rTelefone.getText().toString());
+            cliente.setCpf(Long.valueOf(this.rCpf.getText().toString()));
+            cliente.setEstado(this.rEstado.getText().toString());
+            cliente.setCidade(this.rCidade.getText().toString());
+            cliente.setEndereco(this.rEnd.getText().toString());
+            cliente.setSenha(this.rPassword.getText().toString());
+
+            this.clienteService = new ClienteService();
+
+            boolean criado = this.clienteService.cadastrarCliente(cliente);
+
+            if (criado){
+                errorFalse();
+                requestFocus(rCadastrar);
+                Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_LONG).show();
+                Intent userCadastrado = new Intent(FormularioActivity.this, SignInActivity.class);
+                startActivity(userCadastrado);
+                finish();
+            }else{
+                Toast.makeText(this, "Usuário não cadastrado, tente novamente", Toast.LENGTH_LONG).show();
+            }
+
+
         }
     }
 
