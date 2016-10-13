@@ -13,7 +13,7 @@
         <item
             android:id="@+id/mn_statusexame"
             android:icon="@drawable/ic_note_add_black_24dp"
-            android:title="Status exame" />
+            android:title="Status exame"/>
         <item
             android:id="@+id/mn_favoritos"
             android:icon="@drawable/ic_stars_black_24dp"
@@ -36,10 +36,10 @@
         <menu>
             <item
                 android:id="@+id/mn_Uacadem"
-                android:title="Ultimas academias" />
+                android:title="Ultimas academias"/>
             <item
                 android:id="@+id/mn_Utreinos"
-                android:title="Ultimos treinos" />
+                android:title="Ultimos treinos"/>
         </menu>
     </item>
 
@@ -47,10 +47,10 @@
         <menu>
             <item
                 android:id="@+id/mn_Dpessoais"
-                android:title="Dados Pessoais" />
+                android:title="Dados Pessoais"/>
             <item
                 android:id="@+id/mn_Logoff"
-                android:title="Logoff" />
+                android:title="Logoff"/>
         </menu>
     </item>
 
