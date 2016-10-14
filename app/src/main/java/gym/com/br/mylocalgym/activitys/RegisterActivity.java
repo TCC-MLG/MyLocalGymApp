@@ -1,43 +1,52 @@
 package gym.com.br.mylocalgym.activitys;
 
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.services.ClienteService;
 
+import static gym.com.br.mylocalgym.utils.ValidaCampos.comparaPassword;
+import static gym.com.br.mylocalgym.utils.ValidaCampos.isValidCPF;
+import static gym.com.br.mylocalgym.utils.ValidaCampos.validateEmail;
+import static gym.com.br.mylocalgym.utils.ValidaCampos.validateField;
 
-//import com.android.volley.RequestQueue;
-//import com.android.volley.toolbox.Volley;
-//
-//import org.json.JSONException;
-//import org.json.JSONObject;
-
-//import com.google.android.gms.appdatasearch.GetRecentContextCall;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextInputLayout inputLayoutEmail, inputLayoutPassword, inputLayoutrPassword;
+    private ClienteService clienteService;
+
+    TextInputLayout inputLayoutEmail, inputLayoutPassword, inputLayoutrPassword, inputLayoutrNamec;
+    TextInputLayout inputLayoutrApe, inputLayoutTelefone, inputLayoutCpf, inputLayoutEstado, inputLayoutCidade, inputLayoutEnd;
     private boolean ValCampos;
     private EditText rNomec, rEmail, rApe, rTelefone, rCpf, rEstado, rCidade, rEnd, rPassword, rRPassword;
     private Button rCadastrar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        inputLayoutrNamec = (TextInputLayout) findViewById(R.id.input_layout_rnomec);
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_remail);
         inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_rpassword);
         inputLayoutrPassword = (TextInputLayout) findViewById(R.id.input_layout_rrpassword);
+        inputLayoutrApe = (TextInputLayout) findViewById(R.id.input_layout_rapelido);
+        inputLayoutTelefone = (TextInputLayout) findViewById(R.id.input_layout_rtelefone);
+        inputLayoutCpf = (TextInputLayout) findViewById(R.id.input_layout_rcpf);
+        inputLayoutEstado = (TextInputLayout) findViewById(R.id.input_layout_restado);
+        inputLayoutCidade = (TextInputLayout) findViewById(R.id.input_layout_rcidade);
+        inputLayoutEnd = (TextInputLayout) findViewById(R.id.input_layout_rendereco);
 
         rNomec = (EditText) findViewById(R.id.r_Nomec);
         rEmail = (EditText) findViewById(R.id.r_Email);
@@ -51,37 +60,90 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         rRPassword = (EditText) findViewById(R.id.r_RPassword);
         rCadastrar = (Button) findViewById(R.id.r_Cadastrar);
 
-//        Spinner spinner = (Spinner) findViewById(R.id.planets_spinner);
-//// Create an ArrayAdapter using the string array and a default spinner layout
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.planets_array, android.R.layout.simple_spinner_item);
-//// Specify the layout to use when the list of choices appears
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//// Apply the adapter to the spinner
-//        spinner.setAdapter(adapter);
 
-        rCadastrar.setOnClickListener(this);
+        rCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputLayoutEmail.setErrorEnabled(false);
+                inputLayoutPassword.setErrorEnabled(false);
+                inputLayoutrPassword.setErrorEnabled(false);
+                hideKeyboard();
+                errorFalse();
+                checkInputLayout();
+            }
+        });
 
     }
 
-    public void onClick(View v)
-    {
-        Cadastrar();
+    @Override
+    public void onClick(View v) {
     }
 
-//        Intent it = new Intent(this, Mostra_Activity.class);
+    private void checkInputLayout() {
+
+        if (!validateEmail(rEmail.getText().toString())) {
+            inputLayoutEmail.setError(getString(R.string.erro_msg_email));
+            requestFocus(rEmail);
+        } else if (!validateField(inputLayoutrNamec)) {
+            inputLayoutrNamec.setError(getString(R.string.erro_msg_nome));
+
+        } else if (!validateField(inputLayoutrApe)) {
+            inputLayoutrApe.setError(getString(R.string.erro_msg_ape));
+        } else if (!validateField(inputLayoutTelefone)) {
+            inputLayoutTelefone.setError(getString(R.string.erro_msg_telefone));
+            requestFocus(rTelefone);
+        } else if (!isValidCPF(rCpf.getText().toString())) {
+            inputLayoutCpf.setError(getString(R.string.erro_msg_cpf));
+            requestFocus(rCpf);
+        } else if (!validateField(inputLayoutEstado)) {
+            inputLayoutEstado.setError(getString(R.string.erro_msg_estado));
+            requestFocus(rEstado);
+        } else if (!validateField(inputLayoutCidade)) {
+            inputLayoutCidade.setError(getString(R.string.erro_msg_cidade));
+            requestFocus(rCidade);
+        } else if (!validateField(inputLayoutEnd)) {
+            inputLayoutEnd.setError(getString(R.string.erro_msg_end));
+            requestFocus(rEnd);
+        } else if (!validateField(inputLayoutPassword) || rPassword.getText().toString().length() < 8) {
+            inputLayoutPassword.setError(getString(R.string.erro_msg_password));
+            requestFocus(rPassword);
+        } else if (!validateField(inputLayoutrPassword) || !comparaPassword(rPassword.getText().toString(), rRPassword.getText().toString())) {
+            inputLayoutrPassword.setError(getString(R.string.erro_msg_compara_password));
+            requestFocus(rRPassword);
+        }
+        //Todos validados
+        else {
+            Toast.makeText(this, "Validação ok", Toast.LENGTH_LONG).show();
+
+//            CadastrarCliente cliente = new CadastrarCliente();
+//            cliente.setNome(this.rNomec.getText().toString());
+//            cliente.setEmail(this.rEmail.getText().toString());
+//            cliente.setApelido(this.rApe.getText().toString());
+//            cliente.setTelefone(this.rTelefone.getText().toString());
+//            cliente.setCpf(Long.valueOf(this.rCpf.getText().toString()));
+//            cliente.setEstado(this.rEstado.getText().toString());
+//            cliente.setCidade(this.rCidade.getText().toString());
+//            cliente.setEndereco(this.rEnd.getText().toString());
+//            cliente.setSenha(this.rPassword.getText().toString());
 //
-//        it.putExtra("NOME", rgNome.getText().toString());
-//        it.putExtra("EMAIL", rgEmail.getText().toString());
-//        it.putExtra("APELIDO", rgApe.getText().toString());
-//        it.putExtra("TELEFONE", rgTel.getText().toString());
-//        it.putExtra("CPF", rgCpf.getText().toString());
-//        it.putExtra("ESTADO", rgEstado.getText().toString());
-//        it.putExtra("CIDADE", rgCidade.getText().toString());
-//        it.putExtra("ENDERECO", rgEnd.getText().toString());
-//        it.putExtra("PASSWORD", rgPassword.getText().toString());
-//        startActivity(it);
-//    }
+//            this.clienteService = new ClienteService();
+//
+//            boolean criado = this.clienteService.cadastrarCliente(cliente);
+//
+//            if (criado){
+//                errorFalse();
+//                requestFocus(rCadastrar);
+//                Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_LONG).show();
+//                Intent userCadastrado = new Intent(FormularioActivity.this, SignInActivity.class);
+//                startActivity(userCadastrado);
+//                finish();
+//            }else{
+//                Toast.makeText(this, "Usuário não cadastrado, tente novamente", Toast.LENGTH_LONG).show();
+//            }
+
+
+        }
+    }
 
     // setar o foco de um determinado componente
     private void requestFocus(View view) {
@@ -90,70 +152,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    // método será chamado no onClick
-    public void Cadastrar(){
-
-        ValCampos=false;
-
-        if (!validarEmail()) {
-            return;
-        }
-
-        if (!validarPassword()) {
-            return;
-        }
-        if (!comparaPassword()){
-            return;
-        }
-        ValCampos=true;
-        Toast.makeText(this, "Usuário cadastrado", Toast.LENGTH_LONG).show();
-        Intent userCadastrado = new Intent(RegisterActivity.this, SignInActivity.class);
-        startActivity(userCadastrado);
-        finish();
+    private void errorFalse(){
+        inputLayoutEmail.setErrorEnabled(false);
+        inputLayoutrNamec.setErrorEnabled(false);
+        inputLayoutEmail.setErrorEnabled(false);
+        inputLayoutPassword.setErrorEnabled(false);
+        inputLayoutrPassword.setErrorEnabled(false);
+        inputLayoutrApe.setErrorEnabled(false);
+        inputLayoutTelefone.setErrorEnabled(false);
+        inputLayoutCpf.setErrorEnabled(false);
+        inputLayoutEstado.setErrorEnabled(false);
+        inputLayoutCidade.setErrorEnabled(false);
+        inputLayoutEnd.setErrorEnabled(false);
     }
 
-    // validar a senha
-    private boolean validarPassword() {
-        if (rPassword.getText().toString().trim().length() < 1) {
-            inputLayoutPassword.setError(getString(R.string.erro_msg_password));
-            requestFocus(rPassword);
-            return false;
-        } else {
-            inputLayoutPassword.setErrorEnabled(false);
+    //Utilizado para esconder o teclado na hora que o usuário clicar em login
+    private void hideKeyboard() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).
+                    hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-
-        return true;
-    }
-    // Compara as senhas informadas
-    private boolean comparaPassword() {
-        if (!rPassword.getText().toString().equals(rRPassword.getText().toString())){
-            inputLayoutPassword.setError(getString(R.string.erro_msg_compara_password));
-            requestFocus(rRPassword);
-            return false;
-        } else {
-            inputLayoutrPassword.setErrorEnabled(false);
-        }
-        return true;
-    }
-
-    // validar o endereço de e-mail
-    private boolean validarEmail() {
-        String email = rEmail.getText().toString().trim();
-
-        if (email.isEmpty() || !isValidEmail(email)) {
-            inputLayoutEmail.setError(getString(R.string.erro_msg_email));
-            requestFocus(rEmail);
-            return false;
-        } else {
-            inputLayoutEmail.setErrorEnabled(false);
-        }
-
-        return true;
-    }
-
-    // verifica se o formato do email é válido
-    private static boolean isValidEmail(String email) {
-        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
 }

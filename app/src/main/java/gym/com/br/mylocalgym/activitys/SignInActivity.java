@@ -68,7 +68,7 @@ public class SignInActivity extends AppCompatActivity {
         lgRegisterlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Register = new Intent(SignInActivity.this, FormularioActivity.class);
+                Intent Register = new Intent(SignInActivity.this, RegisterActivity.class);
                 SignInActivity.this.startActivity(Register);
             }
         });
@@ -155,7 +155,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     // validar os campos no momento da digitação
-    private class MyTextWatcher implements TextWatcher {
+    class MyTextWatcher implements TextWatcher {
 
         private View view;
 
