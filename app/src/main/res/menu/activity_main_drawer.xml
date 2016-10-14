@@ -29,6 +29,9 @@
             <item
                 android:id="@+id/mn_Saldo"
                 android:title="Saldo/Recarga" />
+            <item
+                android:id="@+id/mn_Extrato"
+                android:title="Extrato" />
         </menu>
     </item>
 

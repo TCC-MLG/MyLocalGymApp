@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 
 import gym.com.br.mylocalgym.fragments.DadosPessoaisFragment;
+import gym.com.br.mylocalgym.fragments.ExtratoMainFragment;
 import gym.com.br.mylocalgym.fragments.MapsFragment;
 import gym.com.br.mylocalgym.fragments.SaldoFragment;
 import gym.com.br.mylocalgym.utils.SessionManager;
@@ -125,6 +126,15 @@ public class MainActivity extends AppCompatActivity
                 Saldo.addToBackStack("Saldo");
                 Saldo.commitAllowingStateLoss();
 
+                break;
+            case R.id.mn_Extrato:
+                fragmentManager = getSupportFragmentManager();
+
+                FragmentTransaction extrato = fragmentManager.beginTransaction();
+
+                extrato.replace(R.id.conteiner, new ExtratoMainFragment(), "extrato");
+                extrato.addToBackStack("extrato");
+                extrato.commitAllowingStateLoss();
                 break;
             case R.id.mn_Uacadem:
                 break;
