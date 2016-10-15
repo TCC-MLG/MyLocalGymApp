@@ -31,6 +31,17 @@
         <item>19.07.2016 -> 10,00 Smart fit</item>
         <item>20.07.2016 -> 10,00 Smart fit</item>
     </string-array>
+    <string-array name="UltimasAcademias">
+        <item>07.07.2016 -> Smart fit</item>
+        <item>08.07.2016 -> Smart fit</item>
+        <item>10.07.2016 -> Just fit</item>
+        <item>15.07.2016 -> Just fit</item>
+        <item>16.07.2016 -> Just fit</item>
+        <item>17.07.2016 -> World Planet</item>
+        <item>18.07.2016 -> World Planet</item>
+        <item>19.07.2016 -> Smart fit</item>
+        <item>20.07.2016 -> Smart fit</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

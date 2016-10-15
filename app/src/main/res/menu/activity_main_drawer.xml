@@ -14,14 +14,6 @@
             android:id="@+id/mn_statusexame"
             android:icon="@drawable/ic_note_add_black_24dp"
             android:title="Status exame"/>
-        <item
-            android:id="@+id/mn_favoritos"
-            android:icon="@drawable/ic_stars_black_24dp"
-            android:title="Favoritos"/>
-        <item
-            android:id="@+id/mn_treinos"
-            android:icon="@drawable/ic_accessibility_black_24dp"
-            android:title="Treinos"/>
 
     </group>
     <item android:title="CARTEIRA">
@@ -43,9 +35,6 @@
             <item
                 android:id="@+id/mn_Checkin"
                 android:title="Checkin(temp)"/>
-            <item
-                android:id="@+id/mn_Utreinos"
-                android:title="Ultimos treinos"/>
         </menu>
     </item>
 

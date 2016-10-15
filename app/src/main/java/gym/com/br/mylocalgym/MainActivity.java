@@ -2,6 +2,7 @@ package gym.com.br.mylocalgym;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +21,7 @@ import gym.com.br.mylocalgym.fragments.DadosPessoaisFragment;
 import gym.com.br.mylocalgym.fragments.ExtratoMainFragment;
 import gym.com.br.mylocalgym.fragments.MapsFragment;
 import gym.com.br.mylocalgym.fragments.SaldoFragment;
+import gym.com.br.mylocalgym.fragments.UltimasAcademiasFragment;
 import gym.com.br.mylocalgym.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity
@@ -112,53 +114,30 @@ public class MainActivity extends AppCompatActivity
         {
             case R.id.mn_buscar:
                 break;
+
             case R.id.mn_statusexame:
                 break;
-            case R.id.mn_favoritos:
-                break;
-            case R.id.mn_treinos:
-                break;
+
             case R.id.mn_Saldo:
-                fragmentManager = getSupportFragmentManager();
-
-                FragmentTransaction Saldo = fragmentManager.beginTransaction();
-
-                Saldo.replace(R.id.conteiner, new SaldoFragment(), "SaldoFragment");
-                Saldo.addToBackStack("Saldo");
-                Saldo.commitAllowingStateLoss();
-
+                openFragment(new SaldoFragment(), "SaldoFragment");
                 break;
+            
             case R.id.mn_Extrato:
-                fragmentManager = getSupportFragmentManager();
-
-                FragmentTransaction extrato = fragmentManager.beginTransaction();
-
-                extrato.replace(R.id.conteiner, new ExtratoMainFragment(), "extrato");
-                extrato.addToBackStack("extrato");
-                extrato.commitAllowingStateLoss();
+                openFragment(new ExtratoMainFragment(), "extrato");
                 break;
+
             case R.id.mn_Uacadem:
+                openFragment(new UltimasAcademiasFragment(), "UltimasAcademias");
                 break;
+
             case R.id.mn_Checkin:
-                fragmentManager = getSupportFragmentManager();
-
-                FragmentTransaction checkin = fragmentManager.beginTransaction();
-
-                checkin.replace(R.id.conteiner, new CheckinFragment(), "Checkin");
-                checkin.addToBackStack("Checkin");
-                checkin.commitAllowingStateLoss();
+                openFragment(new CheckinFragment(), "Checkin");
                 break;
-            case R.id.mn_Utreinos:
-                break;
+
             case R.id.mn_Dpessoais:
-                fragmentManager = getSupportFragmentManager();
-
-                FragmentTransaction DPessoais = fragmentManager.beginTransaction();
-
-                DPessoais.replace(R.id.conteiner, new DadosPessoaisFragment(), "DPeFragment");
-                DPessoais.addToBackStack("DadosPe");
-                DPessoais.commitAllowingStateLoss();
+                openFragment(new DadosPessoaisFragment(), "DPessoais");
                 break;
+
             case R.id.mn_Logoff:
                 //chama sessionManager para apagar informações do usuário
                 SessionManager sessionManager = new SessionManager(getApplicationContext());
@@ -171,6 +150,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void openFragment(Fragment frag, String text){
+
+        fragmentManager = getSupportFragmentManager();
+
+        FragmentTransaction fragment = fragmentManager.beginTransaction();
+
+        fragment.replace(R.id.conteiner, frag, text);
+        fragment.addToBackStack(text);
+        fragment.commitAllowingStateLoss();
+
+    }
 
 
 }
