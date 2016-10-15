@@ -41,6 +41,9 @@
                 android:id="@+id/mn_Uacadem"
                 android:title="Ultimas academias"/>
             <item
+                android:id="@+id/mn_Checkin"
+                android:title="Checkin(temp)"/>
+            <item
                 android:id="@+id/mn_Utreinos"
                 android:title="Ultimos treinos"/>
         </menu>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import gym.com.br.mylocalgym.fragments.CheckinFragment;
 import gym.com.br.mylocalgym.fragments.DadosPessoaisFragment;
 import gym.com.br.mylocalgym.fragments.ExtratoMainFragment;
 import gym.com.br.mylocalgym.fragments.MapsFragment;
@@ -137,6 +138,15 @@ public class MainActivity extends AppCompatActivity
                 extrato.commitAllowingStateLoss();
                 break;
             case R.id.mn_Uacadem:
+                break;
+            case R.id.mn_Checkin:
+                fragmentManager = getSupportFragmentManager();
+
+                FragmentTransaction checkin = fragmentManager.beginTransaction();
+
+                checkin.replace(R.id.conteiner, new CheckinFragment(), "Checkin");
+                checkin.addToBackStack("Checkin");
+                checkin.commitAllowingStateLoss();
                 break;
             case R.id.mn_Utreinos:
                 break;
