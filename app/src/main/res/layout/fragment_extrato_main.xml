@@ -5,6 +5,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/ex_15d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15 dias"
+            android:layout_alignParentTop="true" />
+
+        <RadioButton
+            android:id="@+id/ex_20d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20 dias"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ex_Buscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar"/>
+    </LinearLayout>
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

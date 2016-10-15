@@ -48,8 +48,8 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:hint="Saldo atual"
-                android:text="25,00"
-                android:inputType="numberDecimal">
+                android:inputType="numberDecimal"
+                android:maxLength="11">
             </EditText>
         </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +67,6 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:hint="Validade"
-                android:text="10/10/2016"
                 android:inputType="date">
             </EditText>
         </android.support.design.widget.TextInputLayout>
