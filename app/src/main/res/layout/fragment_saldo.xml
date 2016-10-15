@@ -49,6 +49,7 @@
                 android:focusableInTouchMode="false"
                 android:hint="Saldo atual"
                 android:inputType="numberDecimal">
+                android:maxLength="11">
             </EditText>
         </android.support.design.widget.TextInputLayout>
 
