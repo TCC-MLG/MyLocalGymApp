@@ -35,10 +35,12 @@ public class SaldoFragment extends Fragment {
         SaldoCliente saldoCliente = this.service.buscarSaldoPorId(2l);
 
         System.out.println("asdsa");
+        if (saldoCliente != null){
 
-        sSaldo.setText(saldoCliente.getSaldo().toString());
-        sDate.setText(saldoCliente.getValidade());
+            sSaldo.setText(saldoCliente.getSaldo().toString());
+            sDate.setText(saldoCliente.getValidade());
 
+        }
         goRecarregar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
