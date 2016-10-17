@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.mn_Saldo:
                 openFragment(new SaldoFragment(), "SaldoFragment");
                 break;
-            
+
             case R.id.mn_Extrato:
                 openFragment(new ExtratoMainFragment(), "extrato");
                 break;
