@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity
 
     public void openFragment(Fragment frag, String text){
 
-        fragmentManager = getSupportFragmentManager();
+            fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction fragment = fragmentManager.beginTransaction();
 

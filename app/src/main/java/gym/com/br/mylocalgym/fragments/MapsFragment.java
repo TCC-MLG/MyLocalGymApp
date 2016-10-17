@@ -7,9 +7,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,10 +21,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import gym.com.br.mylocalgym.R;
+
 public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback,
-        GoogleMap.OnMapClickListener,
-        android.location.LocationListener {
-    private View mLayout;
+                                                                GoogleMap.OnMapClickListener,
+                                                                android.location.LocationListener,
+                                                                GoogleMap.OnMarkerClickListener {
+
+    private FragmentManager fragmentManager;
     private GoogleMap mMap;
     private LocationManager locationManager;
     private static final String TAG = "";
@@ -80,6 +85,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         mMap.setOnMapClickListener(this);
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setOnMarkerClickListener(this);
 
 
 //            Log.i(TAG, "Checking permission.");
@@ -198,6 +204,19 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     public void onProviderDisabled(String provider) {
         Toast.makeText(getActivity(), "Provider desabilitado :): "+ provider, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        fragmentManager =  getFragmentManager();
+
+        FragmentTransaction fragment = fragmentManager.beginTransaction();
+
+        fragment.replace(R.id.conteiner, new CheckinFragment(), "Checkin");
+        fragment.addToBackStack("Checkin");
+        fragment.commitAllowingStateLoss();
+        return false;
+    }
+
 
 //    private void requestLocationPermission() {
 //        Log.i(TAG, "Location permission has NOT been granted. Requesting permission.");
