@@ -25,7 +25,7 @@ public class ClienteRequester {
     public boolean cadastrarCliente(CadastrarCliente cliente) {
 
         this.ativarPolicy();
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/cadastrar";
+        final String url = "http://192.168.43.48:8080/mylocalgym/resources/cliente/cadastrar";
         CadastrarClienteParameter parameter = new CadastrarClienteParameter();
         parameter.createParameter(cliente);
 
