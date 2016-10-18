@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -122,6 +123,17 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
                 // zoom to the current location
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition,18));
+                double currentLatitude = location.getLatitude();
+                double currentLongitude = location.getLongitude();
+                LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+                        .snippet("Just fit")
+                        .flat(true)
+                        .title("Academia"));
+                marker.showInfoWindow();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
             } else {
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -171,7 +183,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         if (!criado) {
             Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(latLng)
-//                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.academia))
+                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
                     .snippet("Just fit")
                     .flat(true)
                     .title("Academia"));
