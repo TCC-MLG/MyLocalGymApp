@@ -47,32 +47,31 @@ public class MainActivity extends AppCompatActivity
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         sessionManager.checkLogin();
 
-        // Pega da sessão as informações do usuário
-        HashMap<String, String> user = sessionManager.getUserDetails();
+            // Pega da sessão as informações do usuário
+            HashMap<String, String> user = sessionManager.getUserDetails();
 
-        // Inicia o header do menu drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            // Inicia o header do menu drawer
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        View headerView = navigationView.getHeaderView(0);
-        TextView emailText = (TextView) headerView.findViewById(R.id.headerEmail);
-        TextView apelidoText = (TextView) headerView.findViewById(R.id.headerapelido);
+            View headerView = navigationView.getHeaderView(0);
+            TextView emailText = (TextView) headerView.findViewById(R.id.headerEmail);
+            TextView apelidoText = (TextView) headerView.findViewById(R.id.headerapelido);
 
-        // Recupera as informações do user e as coloca no header
-        apelidoText.setText(user.get(SessionManager.KEY_NAME));
-        emailText.setText(user.get(SessionManager.KEY_EMAIL));
+            // Recupera as informações do user e as coloca no header
+            apelidoText.setText(user.get(SessionManager.KEY_NAME));
+            emailText.setText(user.get(SessionManager.KEY_EMAIL));
 
-        navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        // Configurações para mapa
-        fragmentManager = getSupportFragmentManager();
+            // Configurações para mapa
+            fragmentManager = getSupportFragmentManager();
 
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        transaction.add(R.id.conteiner, new MapsFragment(), "MapsFragment");
-        transaction.addToBackStack("1");
-        transaction.commit();
-
-    }
+            transaction.add(R.id.conteiner, new MapsFragment(), "MapsFragment");
+            transaction.addToBackStack("1");
+            transaction.commit();
+        }
 
     @Override
     public void onBackPressed() {

@@ -126,14 +126,12 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 double currentLatitude = location.getLatitude();
                 double currentLongitude = location.getLongitude();
                 LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-                Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-                        .snippet("Just fit")
-                        .flat(true)
-                        .title("Academia"));
-                marker.showInfoWindow();
+                addMarker("Academia","Smart Fit", latLng);
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+                currentLatitude=-23.57269218035935;
+                currentLongitude=-46.63999686501232;
+                LatLng unip = new LatLng(currentLatitude, currentLongitude);
+                addMarker("Academia","Unip",unip);
             } else {
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -181,23 +179,16 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
         if (!criado) {
-            Marker marker = mMap.addMarker(new MarkerOptions()
-                    .position(latLng)
-                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-                    .snippet("Just fit")
-                    .flat(true)
-                    .title("Academia"));
-            marker.showInfoWindow();
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-
-//            options = new MarkerOptions()
+            addMarker("Academia","Just Fit",latLng);
+//            Marker marker = mMap.addMarker(new MarkerOptions()
 //                    .position(latLng)
-////                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.academia))
+//                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
 //                    .snippet("Just fit")
 //                    .flat(true)
-//                    .title("Academia");
-//            mMap.addMarker(options);
+//                    .title("Academia"));
+//            marker.showInfoWindow();
 //            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+//
         }else {
             options.position(latLng);
         }
@@ -229,36 +220,14 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         return false;
     }
 
-
-//    private void requestLocationPermission() {
-//        Log.i(TAG, "Location permission has NOT been granted. Requesting permission.");
-//
-//        // BEGIN_INCLUDE(camera_permission_request)
-//        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-//                Manifest.permission.ACCESS_FINE_LOCATION)) {
-//            // Provide an additional rationale to the user if the permission was not granted
-//            // and the user would benefit from additional context for the use of the permission.
-//            // For example if the user has previously denied the permission.
-//            Log.i(TAG,
-//                    "Displaying location permission rationale to provide additional context.");
-//            Snackbar.make(mLayout, R.string.permission_location_rationale,
-//                    Snackbar.LENGTH_INDEFINITE)
-//                    .setAction(R.string.ok, new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            ActivityCompat.requestPermissions(getActivity(),
-//                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                                    MY_PERMISSIONS_REQUEST_LOCATION);
-//                        }
-//                    })
-//                    .show();
-//        } else {
-//
-//            // Location permission has not been granted yet. Request it directly.
-//            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                    MY_PERMISSIONS_REQUEST_LOCATION);
-//        }
-//        // END_INCLUDE(Location_permission_request)
-//    }
+    public void addMarker(String snipped, String title, LatLng latlng){
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(latlng)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+                .snippet(snipped)
+                .flat(true)
+                .title(title));
+        marker.showInfoWindow();
+    }
 
 }
