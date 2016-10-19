@@ -68,7 +68,6 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 == PackageManager.PERMISSION_GRANTED) {
             locationManager.removeUpdates(this);
         } else {
-            // Show rationale and request permission.
         }
 
     }
@@ -97,15 +96,6 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
                 double currentLatitude = location.getLatitude();
                 double currentLongitude = location.getLongitude();
-//<<<<<<< HEAD
-//                LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-//                addMarker("Academia","Smart Fit", latLng);
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-//                currentLatitude=-23.57269218035935;
-//                currentLongitude=-46.63999686501232;
-//                LatLng unip = new LatLng(currentLatitude, currentLongitude);
-//                addMarker("Academia","Unip",unip);
-//=======
 
                 this.latLng = new LatLng(currentLatitude, currentLongitude);
 
@@ -115,7 +105,6 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         1);
-                // Show rationale and request permission.
             }
         }catch (Exception e){
 
@@ -147,19 +136,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         this.latLng = new LatLng(currentLatitude, currentLongitude);
 
         if (!criado) {
-//<<<<<<< HEAD
-//            addMarker("Academia","Just Fit",latLng);
-////            Marker marker = mMap.addMarker(new MarkerOptions()
-////                    .position(latLng)
-////                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-////                    .snippet("Just fit")
-////                    .flat(true)
-////                    .title("Academia"));
-////            marker.showInfoWindow();
-////            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-////
-//=======
-
+            options.position(latLng);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
         }else {
             options.position(latLng);
@@ -210,18 +187,16 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         fragment.addToBackStack("Checkin");
         fragment.commitAllowingStateLoss();
 
-//        return false;
-//    }
-//
-//    public void addMarker(String snipped, String title, LatLng latlng){
-//        Marker marker = mMap.addMarker(new MarkerOptions()
-//                .position(latlng)
-//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-//                .snippet(snipped)
-//                .flat(true)
-//                .title(title));
-//        marker.showInfoWindow();
-//    }
-
     }
+
+    public void addMarker(String snipped, String title, LatLng latlng){
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(latlng)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+                .snippet(snipped)
+                .flat(true)
+                .title(title));
+        marker.showInfoWindow();
+    }
+
 }
