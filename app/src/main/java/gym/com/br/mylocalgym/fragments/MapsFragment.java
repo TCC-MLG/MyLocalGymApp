@@ -27,27 +27,22 @@ import gym.com.br.mylocalgym.R;
 public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback,
                                                                 GoogleMap.OnMapClickListener,
                                                                 android.location.LocationListener,
-                                                                GoogleMap.OnMarkerClickListener {
+                                                                GoogleMap.OnMarkerClickListener,
+                                                                GoogleMap.OnInfoWindowClickListener{
 
     private FragmentManager fragmentManager;
     private GoogleMap mMap;
     private LocationManager locationManager;
     private static final String TAG = "";
-    private static final int MY_PERMISSIONS_REQUEST_LOCATION=0;
     private boolean criado=false;
+
+    private LatLng latLng;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        int off = Settings.Secure.getInt(getContentResolver(), Settings.Secure.LOCATION_MODE);
-//        if(off==0){
-//            Intent onGPS = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//            startActivity(onGPS);
-//        }
         getMapAsync(this);
-
-
     }
 
     @Override
@@ -87,31 +82,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setOnMarkerClickListener(this);
-
-
-//            Log.i(TAG, "Checking permission.");
-//            // BEGIN_INCLUDE(camera_permission)
-//            // Check if the Camera permission is already available.
-//            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
-//                    != PackageManager.PERMISSION_GRANTED) {
-//                // Camera permission has not been granted.
-//
-//                requestLocationPermission();
-//
-//            } else {
-//
-//                // Camera permissions is already available, show the camera preview.
-//                Log.i(TAG,
-//                        "CAMERA permission has already been granted. Displaying camera preview.");
-//                mMap.setMyLocationEnabled(true);
-//                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//                //  convert the location object to a LatLng object that can be used by the map API
-//                LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
-//                // zoom to the current location
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition,16));
-//                handleNewLocation(location);
-//            }
-            // END_INCLUDE(camera_permission)
+        mMap.setOnInfoWindowClickListener(this);
 
         try {
             if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -123,15 +94,23 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
                 // zoom to the current location
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition,18));
+
                 double currentLatitude = location.getLatitude();
                 double currentLongitude = location.getLongitude();
-                LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-                addMarker("Academia","Smart Fit", latLng);
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-                currentLatitude=-23.57269218035935;
-                currentLongitude=-46.63999686501232;
-                LatLng unip = new LatLng(currentLatitude, currentLongitude);
-                addMarker("Academia","Unip",unip);
+//<<<<<<< HEAD
+//                LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+//                addMarker("Academia","Smart Fit", latLng);
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+//                currentLatitude=-23.57269218035935;
+//                currentLongitude=-46.63999686501232;
+//                LatLng unip = new LatLng(currentLatitude, currentLongitude);
+//                addMarker("Academia","Unip",unip);
+//=======
+
+                this.latLng = new LatLng(currentLatitude, currentLongitude);
+
+                this.criarMarcacao();
+
             } else {
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -141,18 +120,6 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         }catch (Exception e){
 
         }
-
-
-//        Coordenadas para a cidade de São paulo
-//        LatLng saoPaulo = new LatLng(-23.55382, -46.6355);
-//
-//        MarkerOptions marker2 = new MarkerOptions();
-//        marker2.position(saoPaulo);
-//        marker2.title("Marker in São Paulo");
-        //marcar sua
-//
-//        mMap.addMarker(marker2);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(saoPaulo));
     }
 
     @Override
@@ -176,22 +143,41 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
-        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+
+        this.latLng = new LatLng(currentLatitude, currentLongitude);
 
         if (!criado) {
-            addMarker("Academia","Just Fit",latLng);
-//            Marker marker = mMap.addMarker(new MarkerOptions()
-//                    .position(latLng)
-//                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-//                    .snippet("Just fit")
-//                    .flat(true)
-//                    .title("Academia"));
-//            marker.showInfoWindow();
-//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-//
+//<<<<<<< HEAD
+//            addMarker("Academia","Just Fit",latLng);
+////            Marker marker = mMap.addMarker(new MarkerOptions()
+////                    .position(latLng)
+////                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+////                    .snippet("Just fit")
+////                    .flat(true)
+////                    .title("Academia"));
+////            marker.showInfoWindow();
+////            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+////
+//=======
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
         }else {
             options.position(latLng);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
         }
+    }
+
+    public void criarMarcacao(){
+
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+                .snippet("Just fit")
+                .flat(true)
+                .title("Academia"));
+        marker.showInfoWindow();
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+
     }
 
     @Override
@@ -210,6 +196,12 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
         fragmentManager =  getFragmentManager();
 
         FragmentTransaction fragment = fragmentManager.beginTransaction();
@@ -217,17 +209,19 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         fragment.replace(R.id.conteiner, new CheckinFragment(), "Checkin");
         fragment.addToBackStack("Checkin");
         fragment.commitAllowingStateLoss();
-        return false;
-    }
 
-    public void addMarker(String snipped, String title, LatLng latlng){
-        Marker marker = mMap.addMarker(new MarkerOptions()
-                .position(latlng)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-                .snippet(snipped)
-                .flat(true)
-                .title(title));
-        marker.showInfoWindow();
-    }
+//        return false;
+//    }
+//
+//    public void addMarker(String snipped, String title, LatLng latlng){
+//        Marker marker = mMap.addMarker(new MarkerOptions()
+//                .position(latlng)
+//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+//                .snippet(snipped)
+//                .flat(true)
+//                .title(title));
+//        marker.showInfoWindow();
+//    }
 
+    }
 }
