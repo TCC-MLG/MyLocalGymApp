@@ -1,5 +1,7 @@
 package gym.com.br.mylocalgym.presenters;
 
+import java.math.BigDecimal;
+
 import gym.com.br.mylocalgym.models.ExtratoCliente;
 
 /**
@@ -11,8 +13,8 @@ public class ExtratoClientePresenter {
     private String dataTransacao;
     private Integer idAcademia;
     private Integer idTransacao ;
-    private Integer razaoSocial;
-    private Integer valor;
+    private String razaoSocial;
+    private BigDecimal valor;
 
     public ExtratoCliente convert(){
         ExtratoCliente extratoCliente = new ExtratoCliente();
@@ -51,19 +53,19 @@ public class ExtratoClientePresenter {
         this.idTransacao = idTransacao;
     }
 
-    public Integer getRazaoSocial() {
+    public String getRazaoSocial() {
         return razaoSocial;
     }
 
-    public void setRazaoSocial(Integer razaoSocial) {
+    public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
     }
 
-    public Integer getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 }

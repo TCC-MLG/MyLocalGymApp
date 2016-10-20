@@ -1,12 +1,15 @@
 package gym.com.br.mylocalgym.requesters;
 
 import android.os.StrictMode;
+import android.os.SystemClock;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 import gym.com.br.mylocalgym.Parameters.CadastrarClienteParameter;
 import gym.com.br.mylocalgym.models.CadastrarCliente;
@@ -35,23 +38,33 @@ public class ExtratoClienteRequester {
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
         try {
-            List<ExtratoClientePresenter> clientePresenters = (List<ExtratoClientePresenter>) restTemplate.getForObject(url, ExtratoClientePresenter.class);
+            List<LinkedHashMap<String, Object>> clientePresenters = restTemplate.getForObject(url, List.class);
 
             List<ExtratoCliente> clientes = new ArrayList<>();
+            if (clientePresenters != null){
+                for (LinkedHashMap<String, Object> presenter : clientePresenters) {
 
-            if (clientePresenters != null) {
-                for (ExtratoClientePresenter cliente : clientePresenters) {
-                    clientes.add(cliente.convert());
+                    clientes.add(this.convert(presenter));
+
                 }
+
+                return clientes;
             }
-            return clientes;
+
         } catch (Exception e) {
 
-            return null;
         }
+        return null;
+
     }
 
+    private ExtratoCliente convert(LinkedHashMap<String, Object> presenter){
 
+        System.out.print("");
+       ExtratoCliente cliente = new ExtratoCliente(presenter.get("dataTransacao"), presenter.get("idAcademia"), presenter.get("idTransacao"), presenter.get("razaoSocial"), presenter.get("valor"));
+
+        return cliente;
+    }
 
 
 
