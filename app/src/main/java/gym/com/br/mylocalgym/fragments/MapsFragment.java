@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import gym.com.br.mylocalgym.Parameters.MarkerParameter;
 import gym.com.br.mylocalgym.R;
 
 public class MapsFragment extends SupportMapFragment implements OnMapReadyCallback,
@@ -56,7 +57,6 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
             Toast.makeText(getActivity(), "Provider Habilitado", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getActivity(), "Provider desabilitado :): ", Toast.LENGTH_LONG).show();
-            // Show rationale and request permission.
         }
     }
 
@@ -144,6 +144,32 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         }
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
+        MarkerParameter markerParameter = new MarkerParameter(marker.getTitle(), marker.getSnippet());
+
+        fragmentManager =  getFragmentManager();
+
+        FragmentTransaction fragment = fragmentManager.beginTransaction();
+
+        fragment.replace(R.id.conteiner, new CheckinFragment(markerParameter), "Checkin");
+        fragment.addToBackStack("Checkin");
+        fragment.commitAllowingStateLoss();
+
+    }
+
+    private void addMarker(String snipped, String title, LatLng latlng){
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(latlng)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
+                .snippet(snipped)
+                .flat(true)
+                .title(title));
+        marker.showInfoWindow();
+    }
+
+
     public void criarMarcacao(){
 
         Marker marker = mMap.addMarker(new MarkerOptions()
@@ -176,27 +202,5 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         return false;
     }
 
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-
-        fragmentManager =  getFragmentManager();
-
-        FragmentTransaction fragment = fragmentManager.beginTransaction();
-
-        fragment.replace(R.id.conteiner, new CheckinFragment(), "Checkin");
-        fragment.addToBackStack("Checkin");
-        fragment.commitAllowingStateLoss();
-
-    }
-
-    public void addMarker(String snipped, String title, LatLng latlng){
-        Marker marker = mMap.addMarker(new MarkerOptions()
-                .position(latlng)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-                .snippet(snipped)
-                .flat(true)
-                .title(title));
-        marker.showInfoWindow();
-    }
 
 }

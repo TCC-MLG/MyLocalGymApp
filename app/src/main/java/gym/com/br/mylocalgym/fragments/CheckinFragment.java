@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import gym.com.br.mylocalgym.Parameters.MarkerParameter;
 import gym.com.br.mylocalgym.R;
 
 
@@ -21,6 +22,15 @@ public class CheckinFragment extends Fragment {
     private EditText ck_Status;
     private EditText ck_Transaction;
     private Button ck_Treinar;
+
+
+    public CheckinFragment() {}
+
+    public CheckinFragment(MarkerParameter markerParameter) {
+
+        System.out.println("asdas");
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
