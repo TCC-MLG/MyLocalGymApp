@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import gym.com.br.mylocalgym.Parameters.MarkerParameter;
 import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.services.CheckinService;
 
 
 public class CheckinFragment extends Fragment {
@@ -23,6 +24,7 @@ public class CheckinFragment extends Fragment {
     private EditText ck_Transaction;
     private Button ck_Treinar;
 
+    private CheckinService service;
 
     public CheckinFragment() {}
 
@@ -36,6 +38,9 @@ public class CheckinFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
+
+        this.service = new CheckinService();
+
         View rootview = inflater.inflate(R.layout.fragment_checkin, container, false);
 
         ck_NomeAc = (EditText) rootview.findViewById(R.id.ck_NomeAc);
@@ -55,8 +60,19 @@ public class CheckinFragment extends Fragment {
         ck_Treinar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Solicitação enviada", Toast.LENGTH_LONG).show();
-                ck_Transaction.setText("Aguardando analise");
+
+                Integer checkinId = service.solicitarCheckin(2, 1);
+
+                if (checkinId != null){
+
+                    Toast.makeText(getContext(), "Solicitação enviada", Toast.LENGTH_LONG).show();
+                    ck_Transaction.setText("Aguardando analise");
+
+                }else {
+
+                    Toast.makeText(getContext(), "Solicitação não enviada, tente novamente", Toast.LENGTH_LONG).show();
+
+                }
 
             }
 
