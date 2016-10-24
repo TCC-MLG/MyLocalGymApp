@@ -6,6 +6,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import gym.com.br.mylocalgym.Parameters.SolicitarCheckinParameter;
+import gym.com.br.mylocalgym.models.SaldoCliente;
+import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
 /**
  * Created by Matheus on 23/10/2016.
@@ -41,6 +43,25 @@ public class CheckinRequester {
 
         }
         return null;
+    }
+
+    public boolean verificarSolicitacao(Integer clienteId,  Integer checkinId){
+
+        this.ativarPolicy();
+
+        final String url = "http://192.168.43.48:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+        try{
+
+            boolean saldo = restTemplate.getForObject(url, Boolean.class);
+
+            return saldo;
+        }catch (Exception e){
+
+        }
+        return false;
     }
 
 }

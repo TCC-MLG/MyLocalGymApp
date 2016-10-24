@@ -16,4 +16,10 @@ public class CheckinService {
         return this.requester.solicitarCheckin(clienteId, academiaId);
     }
 
+    public boolean verificarSolicitacao(Integer clienteId,  Integer checkinId){
+
+        this.requester = new CheckinRequester();
+        return this.requester.verificarSolicitacao(clienteId, checkinId);
+    }
+
 }

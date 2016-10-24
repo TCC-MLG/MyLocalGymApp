@@ -2,6 +2,9 @@ package gym.com.br.mylocalgym.fragments;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +16,10 @@ import android.widget.Toast;
 import gym.com.br.mylocalgym.Parameters.MarkerParameter;
 import gym.com.br.mylocalgym.R;
 import gym.com.br.mylocalgym.services.CheckinService;
+import gym.com.br.mylocalgym.utils.Job;
 
 
-public class CheckinFragment extends Fragment {
+public class CheckinFragment extends Fragment{
 
     private EditText ck_NomeAc;
     private EditText ck_EndAc;
@@ -23,6 +27,16 @@ public class CheckinFragment extends Fragment {
     private EditText ck_Status;
     private EditText ck_Transaction;
     private Button ck_Treinar;
+
+    private Integer checkinId;
+
+    private boolean validado;
+
+    private Handler handler;
+
+    Thread t;
+
+    View rootview;
 
     private CheckinService service;
 
@@ -41,7 +55,7 @@ public class CheckinFragment extends Fragment {
 
         this.service = new CheckinService();
 
-        View rootview = inflater.inflate(R.layout.fragment_checkin, container, false);
+        rootview = inflater.inflate(R.layout.fragment_checkin, container, false);
 
         ck_NomeAc = (EditText) rootview.findViewById(R.id.ck_NomeAc);
         ck_EndAc = (EditText) rootview.findViewById(R.id.ck_EndAc);
@@ -57,21 +71,29 @@ public class CheckinFragment extends Fragment {
         ck_Status.setText("Não");
         ck_Transaction.setText("Não enviada");
 
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                Toast.makeText(getContext(), "Solicitação aceita", Toast.LENGTH_LONG).show();
+                ck_Transaction.setText("Liberado!");
+            }
+        };
+
         ck_Treinar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
-                Integer checkinId = service.solicitarCheckin(2, 1);
+                checkinId = service.solicitarCheckin(2, 1);
 
                 if (checkinId != null){
 
                     Toast.makeText(getContext(), "Solicitação enviada", Toast.LENGTH_LONG).show();
                     ck_Transaction.setText("Aguardando analise");
 
+                    ativarJob();
+
                 }else {
-
                     Toast.makeText(getContext(), "Solicitação não enviada, tente novamente", Toast.LENGTH_LONG).show();
-
                 }
 
             }
@@ -80,5 +102,11 @@ public class CheckinFragment extends Fragment {
         });
         return rootview;
     }
+
+    private void ativarJob(){
+        Thread t = new Thread(new Job(handler, 2, checkinId));
+        t.start();
+    }
+
 
 }
