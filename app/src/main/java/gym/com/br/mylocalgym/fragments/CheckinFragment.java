@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import gym.com.br.mylocalgym.Parameters.MarkerParameter;
 import gym.com.br.mylocalgym.R;
 import gym.com.br.mylocalgym.services.CheckinService;
 import gym.com.br.mylocalgym.utils.Job;
+import gym.com.br.mylocalgym.utils.SessionManager;
 
 
 public class CheckinFragment extends Fragment{
@@ -28,15 +31,14 @@ public class CheckinFragment extends Fragment{
     private EditText ck_Transaction;
     private Button ck_Treinar;
 
+    private String title;
+    private String snippet;
+
     private Integer checkinId;
 
     private boolean validado;
 
     private Handler handler;
-
-    Thread t;
-
-    View rootview;
 
     private CheckinService service;
 
@@ -44,7 +46,8 @@ public class CheckinFragment extends Fragment{
 
     public CheckinFragment(MarkerParameter markerParameter) {
 
-        System.out.println("asdas");
+        this.title = markerParameter.getTitle();
+        this.snippet = markerParameter.getSnippet();
 
     }
 
@@ -53,9 +56,16 @@ public class CheckinFragment extends Fragment{
                              ViewGroup container,
                              Bundle savedInstanceState) {
 
+//        //Recupera sessão e checa login
+//        SessionManager sessionManager = new SessionManager(getContext());
+//        sessionManager.checkLogin();
+//
+//        // Pega da sessão as informações do usuário
+//        HashMap<String, String> user = sessionManager.getUserDetails();
+
         this.service = new CheckinService();
 
-        rootview = inflater.inflate(R.layout.fragment_checkin, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_checkin, container, false);
 
         ck_NomeAc = (EditText) rootview.findViewById(R.id.ck_NomeAc);
         ck_EndAc = (EditText) rootview.findViewById(R.id.ck_EndAc);
