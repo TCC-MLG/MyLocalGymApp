@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager;
+    HashMap<String, String> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +46,14 @@ public class MainActivity extends AppCompatActivity
 
         //Recupera sessão e checa login
         SessionManager sessionManager = new SessionManager(getApplicationContext());
-        sessionManager.checkLogin();
+        //Cria login para teste
+        sessionManager.createLoginSession("Jorge", "Ra.gonz4lez@gmail.com", "01");
+
+        if (sessionManager.checkLogin()){
 
             // Pega da sessão as informações do usuário
-            HashMap<String, String> user = sessionManager.getUserDetails();
-
+            user = sessionManager.getUserDetails();
+        }
             // Inicia o header do menu drawer
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 

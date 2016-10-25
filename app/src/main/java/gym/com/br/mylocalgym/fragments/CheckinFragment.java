@@ -3,7 +3,6 @@ package gym.com.br.mylocalgym.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -55,13 +54,18 @@ public class CheckinFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
+        String email;
+        int id=0;
+        String login;
 
-//        //Recupera sessão e checa login
-//        SessionManager sessionManager = new SessionManager(getContext());
-//        sessionManager.checkLogin();
-//
-//        // Pega da sessão as informações do usuário
-//        HashMap<String, String> user = sessionManager.getUserDetails();
+        //Recupera sessão e checa login
+        SessionManager sessionManager = new SessionManager(getContext());
+        // Pega da sessão as informações do usuário
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(sessionManager.KEY_EMAIL);
+        login = user.get(sessionManager.KEY_NAME);
+        //O numero no parse se é 01 volta 1
+        id = Integer.parseInt(user.get(sessionManager.KEY_ID));
 
         this.service = new CheckinService();
 
@@ -75,7 +79,7 @@ public class CheckinFragment extends Fragment{
         ck_Treinar = (Button) rootview.findViewById(R.id.ck_Treinar);
 
 
-        ck_NomeAc.setText("Just Fit");
+        ck_NomeAc.setText("Just Fit -> id: ");
         ck_EndAc.setText("Logo ali, 33");
         ck_Preco.setText("14,00");
         ck_Status.setText("Não");
