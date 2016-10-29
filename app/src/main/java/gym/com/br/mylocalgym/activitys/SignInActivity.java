@@ -101,7 +101,7 @@ public class SignInActivity extends AppCompatActivity {
         if (resultado){
             //Cria uma sessão para o login do usuário
             SessionManager sessionManager = new SessionManager(getApplicationContext());
-            sessionManager.createLoginSession(cliente.getNome(), lgEmail.getText().toString(), cliente.getId().toString());
+            sessionManager.createLoginSession(cliente.getNome(), cliente.getEmail().toString(), cliente.getId().toString());
 
             Toast.makeText(getApplicationContext(), getString(R.string.login_ok), Toast.LENGTH_SHORT).show();
 

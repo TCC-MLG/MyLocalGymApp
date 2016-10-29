@@ -33,7 +33,7 @@ public class ExtratoClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.48:8080/mylocalgym/resources/transacao/historico/cliente/"+2+"/"+20+"";
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/transacao/historico/cliente/"+2+"/"+20+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 

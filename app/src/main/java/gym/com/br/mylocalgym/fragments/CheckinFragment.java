@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 import gym.com.br.mylocalgym.Parameters.MarkerParameter;
 import gym.com.br.mylocalgym.R;
+import gym.com.br.mylocalgym.models.DadosAcademia;
 import gym.com.br.mylocalgym.services.CheckinService;
 import gym.com.br.mylocalgym.utils.Job;
 import gym.com.br.mylocalgym.utils.SessionManager;
@@ -32,6 +33,9 @@ public class CheckinFragment extends Fragment{
 
     private String title;
     private String snippet;
+    private String email;
+    private Integer id;
+    private String login;
 
     private Integer checkinId;
 
@@ -39,14 +43,16 @@ public class CheckinFragment extends Fragment{
 
     private Handler handler;
 
+    private DadosAcademia academia;
+
     private CheckinService service;
 
     public CheckinFragment() {}
 
     public CheckinFragment(MarkerParameter markerParameter) {
 
-        this.title = markerParameter.getTitle();
-        this.snippet = markerParameter.getSnippet();
+        this.service = new CheckinService();
+        this.academia = this.service.buscarAcademiaPorId(markerParameter.getSnippet());
 
     }
 
@@ -54,9 +60,6 @@ public class CheckinFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        String email;
-        int id=0;
-        String login;
 
         //Recupera sessão e checa login
         SessionManager sessionManager = new SessionManager(getContext());
@@ -79,10 +82,10 @@ public class CheckinFragment extends Fragment{
         ck_Treinar = (Button) rootview.findViewById(R.id.ck_Treinar);
 
 
-        ck_NomeAc.setText("Just Fit -> id: ");
-        ck_EndAc.setText("Logo ali, 33");
-        ck_Preco.setText("14,00");
-        ck_Status.setText("Não");
+        ck_NomeAc.setText(academia.getRazaoSocial() != null ? academia.getRazaoSocial().toString() : null);
+        ck_EndAc.setText(academia.getEndereco() != null ? academia.getEndereco().toString() : null);
+        ck_Preco.setText(academia.getValorServico() != null ? academia.getValorServico().toString() : null);
+        ck_Status.setText(academia.getFuncionamento() != null ? academia.getFuncionamento(): null);
         ck_Transaction.setText("Não enviada");
 
         handler = new Handler() {
@@ -97,7 +100,7 @@ public class CheckinFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                checkinId = service.solicitarCheckin(2, 1);
+                checkinId = service.solicitarCheckin(id, academia.getId() != null ? academia.getId() : null);
 
                 if (checkinId != null){
 
@@ -118,7 +121,7 @@ public class CheckinFragment extends Fragment{
     }
 
     private void ativarJob(){
-        Thread t = new Thread(new Job(handler, 2, checkinId));
+        Thread t = new Thread(new Job(handler, id, checkinId));
         t.start();
     }
 

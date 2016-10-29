@@ -6,7 +6,9 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import gym.com.br.mylocalgym.Parameters.SolicitarCheckinParameter;
+import gym.com.br.mylocalgym.models.DadosAcademia;
 import gym.com.br.mylocalgym.models.SaldoCliente;
+import gym.com.br.mylocalgym.presenters.DadosAcademiaPresenter;
 import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
 /**
@@ -25,7 +27,11 @@ public class CheckinRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.48:8080/mylocalgym/resources/checkin/solicitar";
+        if (clienteId == null && academiaId == null){
+            return null;
+        }
+
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/checkin/solicitar";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -49,7 +55,7 @@ public class CheckinRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.48:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -62,6 +68,25 @@ public class CheckinRequester {
 
         }
         return false;
+    }
+
+    public DadosAcademia buscarAcademiaPorId(String nome){
+
+        this.ativarPolicy();
+
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/academia/"+nome+"";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+        try{
+
+            DadosAcademiaPresenter dadosAcademia = restTemplate.getForObject(url, DadosAcademiaPresenter.class);
+
+            return dadosAcademia != null ? dadosAcademia.convert() : new DadosAcademia();
+        }catch (Exception e){
+
+        }
+        return new DadosAcademia();
     }
 
 }

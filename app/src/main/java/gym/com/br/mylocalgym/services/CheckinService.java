@@ -1,5 +1,6 @@
 package gym.com.br.mylocalgym.services;
 
+import gym.com.br.mylocalgym.models.DadosAcademia;
 import gym.com.br.mylocalgym.requesters.CheckinRequester;
 
 /**
@@ -20,6 +21,13 @@ public class CheckinService {
 
         this.requester = new CheckinRequester();
         return this.requester.verificarSolicitacao(clienteId, checkinId);
+    }
+
+    public DadosAcademia buscarAcademiaPorId(String nome){
+
+        this.requester = new CheckinRequester();
+        return this.requester.buscarAcademiaPorId(nome);
+
     }
 
 }

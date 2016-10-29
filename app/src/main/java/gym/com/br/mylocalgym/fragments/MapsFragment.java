@@ -175,7 +175,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-                .snippet("Just fit")
+                .snippet("razaoSocial")
                 .flat(true)
                 .title("Academia"));
         marker.showInfoWindow();
