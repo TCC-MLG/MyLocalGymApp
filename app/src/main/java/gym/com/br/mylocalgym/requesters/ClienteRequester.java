@@ -9,6 +9,7 @@ import java.net.URI;
 
 import gym.com.br.mylocalgym.Parameters.CadastrarClienteParameter;
 import gym.com.br.mylocalgym.models.CadastrarCliente;
+import gym.com.br.mylocalgym.models.DadosCliente;
 
 /**
  * Created by Luciano on 12/10/2016.
@@ -31,18 +32,32 @@ public class ClienteRequester {
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
         try {
             restTemplate.postForObject(url, parameter, CadastrarClienteParameter.class);
 
             System.out.println("opa");
-
         }catch (Exception e){
 
             return false;
-
         }
+        return true;
+    }
 
+    public boolean alterarCliente(Integer id, DadosCliente dadosCliente){
+
+        this.ativarPolicy();
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+id+"/alterar";
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        try {
+            //restTemplate.postForObject(url, dadosCliente, DadosCliente.class);
+
+            System.out.println("opa");
+        }catch (Exception e){
+
+            return false;
+        }
         return true;
     }
 }

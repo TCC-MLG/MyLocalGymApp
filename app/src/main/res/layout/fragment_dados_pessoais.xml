@@ -62,27 +62,95 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_dpexame"
+                android:id="@+id/input_layout_dpestado"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/dp_Exame"
+                    android:id="@+id/dp_estado"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Exame médico"
-                    android:inputType="text"/>
+                    android:hint="Estado"
+                    android:inputType="phone"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_dptreinos"
+            android:id="@+id/input_layout_dpcidade"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/dp_cidade"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cidade"
+                android:inputType="phone"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_dpendereco"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/dp_Treinos"
+                    android:id="@+id/dp_endereco"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Treinos"
-                    android:inputType="text"/>
+                    android:hint="Endereço"
+                    android:inputType="phone"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/dp_Exame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:hint="Buscar exame"
+                    android:inputType="text"
+                    android:layout_weight="0.97" />
+
+                <Button
+                    android:id="@+id/dp_pegar_examee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selecionar"
+                    android:background="@color/colorlogin"
+                    android:layout_marginTop="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/dp_Treinos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:hint="Buscar sua imagem"
+                    android:inputType="text"
+                    android:layout_weight="0.97" />
+
+                <Button
+                    android:id="@+id/dp_pegar_imagem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selecionar"
+                    android:background="@color/colorlogin"
+                    android:layout_marginTop="15dp" />
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_dpsenha"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/dp_senha"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Alterar senha"
+                    android:inputType="phone"/>
             </android.support.design.widget.TextInputLayout>
 
             <TextView

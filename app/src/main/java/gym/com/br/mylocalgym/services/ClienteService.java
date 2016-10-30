@@ -1,6 +1,7 @@
 package gym.com.br.mylocalgym.services;
 
 import gym.com.br.mylocalgym.models.CadastrarCliente;
+import gym.com.br.mylocalgym.models.DadosCliente;
 import gym.com.br.mylocalgym.requesters.ClienteRequester;
 
 /**
@@ -18,6 +19,13 @@ public class ClienteService {
         boolean criado = this.clienteRequester.cadastrarCliente(cliente);
 
         return criado;
+    }
+
+    public boolean alterarCliente(Integer id,DadosCliente cliente){
+
+        this.clienteRequester = new ClienteRequester();
+
+        return this.clienteRequester.alterarCliente(id, cliente);
     }
 
 }
