@@ -58,7 +58,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Telefone"
-                    android:inputType="phone"/>
+                    android:inputType="text"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -70,7 +70,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Estado"
-                    android:inputType="phone"/>
+                    android:inputType="text"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -82,7 +82,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cidade"
-                android:inputType="phone"/>
+                android:inputType="text"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -94,7 +94,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Endereço"
-                    android:inputType="phone"/>
+                    android:inputType="text"/>
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
@@ -108,7 +108,8 @@
                     android:layout_height="fill_parent"
                     android:hint="Buscar exame"
                     android:inputType="text"
-                    android:layout_weight="0.97" />
+                    android:layout_weight="0.97"
+                    android:clickable="false"/>
 
                 <Button
                     android:id="@+id/dp_pegar_examee"
@@ -130,7 +131,8 @@
                     android:layout_height="fill_parent"
                     android:hint="Buscar sua imagem"
                     android:inputType="text"
-                    android:layout_weight="0.97" />
+                    android:layout_weight="0.97"
+                    android:clickable="false"/>
 
                 <Button
                     android:id="@+id/dp_pegar_imagem"

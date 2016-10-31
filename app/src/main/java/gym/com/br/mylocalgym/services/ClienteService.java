@@ -12,7 +12,7 @@ public class ClienteService {
 
     private ClienteRequester clienteRequester;
 
-    public boolean cadastrarCliente(CadastrarCliente cliente){
+    public boolean cadastrarCliente(CadastrarCliente cliente) {
 
         this.clienteRequester = new ClienteRequester();
 
@@ -21,11 +21,18 @@ public class ClienteService {
         return criado;
     }
 
-    public boolean alterarCliente(Integer id,DadosCliente cliente){
+    public boolean alterarCliente(Integer id, DadosCliente cliente) {
 
         this.clienteRequester = new ClienteRequester();
 
         return this.clienteRequester.alterarCliente(id, cliente);
+    }
+
+    public DadosCliente buscarDadosCliente(Integer id) {
+
+        this.clienteRequester = new ClienteRequester();
+
+        return this.clienteRequester.buscarDadosCliente(id);
     }
 
 }

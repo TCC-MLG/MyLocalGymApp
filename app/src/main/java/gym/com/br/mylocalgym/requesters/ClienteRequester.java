@@ -10,6 +10,8 @@ import java.net.URI;
 import gym.com.br.mylocalgym.Parameters.CadastrarClienteParameter;
 import gym.com.br.mylocalgym.models.CadastrarCliente;
 import gym.com.br.mylocalgym.models.DadosCliente;
+import gym.com.br.mylocalgym.presenters.DadosClientePresenter;
+import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
 /**
  * Created by Luciano on 12/10/2016.
@@ -51,13 +53,33 @@ public class ClienteRequester {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         try {
-            //restTemplate.postForObject(url, dadosCliente, DadosCliente.class);
 
-            System.out.println("opa");
+            Boolean alterado = restTemplate.postForObject(url, dadosCliente, Boolean.class);
+
+            return alterado;
         }catch (Exception e){
-
+            e.printStackTrace();
             return false;
         }
-        return true;
+    }
+
+    public DadosCliente buscarDadosCliente(Integer id){
+
+        this.ativarPolicy();
+
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+id+"";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+        try{
+            DadosClientePresenter clientePresenter = restTemplate.getForObject(url, DadosClientePresenter.class);
+
+            return clientePresenter != null ?  clientePresenter.convert() : null;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+
     }
 }

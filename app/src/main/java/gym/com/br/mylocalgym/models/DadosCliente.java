@@ -15,10 +15,13 @@ public class DadosCliente {
     private String senha;
     private byte[] exame;
     private byte[] foto;
+    String vamos;
+
+    public DadosCliente(){}
 
     public DadosCliente(String nome, String apelido, String telefone, String estado, String cidade, String endereco, String senha, byte[] exame, byte[] foto) {
 
-        this.nome = nome;
+        this.nome = nome.toString();
         this.apelido = apelido;
         this.telefone = telefone;
         this.estado = estado;
@@ -27,6 +30,7 @@ public class DadosCliente {
         this.senha = senha;
         this.exame = exame;
         this.foto = foto;
+
     }
 
     public String getNome() {

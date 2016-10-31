@@ -56,6 +56,8 @@ public class DadosPessoaisFragment extends Fragment {
     private Integer clienteId;
     private boolean foiFoto = false;
 
+    private DadosCliente dadosCliente;
+
     private byte[] imagem;
 
     private ClienteService clienteService;
@@ -65,6 +67,15 @@ public class DadosPessoaisFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_dados_pessoais, container, false);
+
+        SessionManager sessionManager = new SessionManager(getContext());
+        // Pega da sessão as informações do usuário
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        clienteId = Integer.parseInt(user.get(sessionManager.KEY_ID));
+
+        clienteService = new ClienteService();
+
+        dadosCliente = this.clienteService.buscarDadosCliente(clienteId);
 
         dpNome = (EditText) rootview.findViewById(R.id.dp_Nomec);
         dpApe = (EditText) rootview.findViewById(R.id.dp_Ape);
@@ -76,22 +87,20 @@ public class DadosPessoaisFragment extends Fragment {
         dpExame = (EditText) rootview.findViewById(R.id.dp_Exame);
         dpTreino = (EditText) rootview.findViewById(R.id.dp_Treinos);
 
-
         dpSalvar = (Button) rootview.findViewById(R.id.dp_Salvar);
         pegarImagem = (Button) rootview.findViewById(R.id.dp_pegar_imagem);
         pegarExame = (Button) rootview.findViewById(R.id.dp_pegar_examee);
 
-        dpNome.setText("Jorge Rapahel Gonzalez");
-        dpApe.setText("Jorgito");
-        dpTelefone.setText("11 983396430");
+        dpNome.setText(dadosCliente.getNome());
+        dpApe.setText(dadosCliente.getApelido());
+        dpTelefone.setText(dadosCliente.getTelefone());
+        estado.setText(dadosCliente.getEstado());
+        cidade.setText(dadosCliente.getCidade());
+        endereco.setText(dadosCliente.getEndereco());
+        senha.setText(dadosCliente.getSenha());
 
         dpExame.setText("Exame Arquivo");
         dpTreino.setText("selecionar imagem");
-
-        SessionManager sessionManager = new SessionManager(getContext());
-        // Pega da sessão as informações do usuário
-        HashMap<String, String> user = sessionManager.getUserDetails();
-        clienteId = Integer.parseInt(user.get(sessionManager.KEY_ID));
 
         pegarImagem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,13 +126,14 @@ public class DadosPessoaisFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                DadosCliente dadosCliente = new DadosCliente(dpNome.toString()
-                        , dpApe != null ? dpApe.toString() : null
-                        , dpTelefone != null ? dpTelefone.toString() : null
-                        , estado != null ? estado.toString() : null
-                        , cidade != null ? cidade.toString() : null
-                        , endereco != null ? endereco.toString() : null
-                        , senha != null ? senha.toString() : null
+                DadosCliente dadosCliente = new DadosCliente(
+                        dpNome != null ? dpNome.getText().toString() : null
+                        , dpApe != null ? dpApe.getText().toString() : null
+                        , dpTelefone != null ? dpTelefone.getText().toString() : null
+                        , estado != null ? estado.getText().toString() : null
+                        , cidade != null ? cidade.getText().toString() : null
+                        , endereco != null ? endereco.getText().toString() : null
+                        , senha != null ? senha.getText().toString() : null
                         , exame
                         , foto);
 
@@ -169,9 +179,9 @@ public class DadosPessoaisFragment extends Fragment {
 
                 this.imagem = writeObject(bitmap);
 
-                if (foiFoto){
+                if (foiFoto) {
                     this.foto = writeObject(bitmap);
-                }else{
+                } else {
                     this.exame = writeObject(bitmap);
                 }
 
