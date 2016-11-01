@@ -1,5 +1,6 @@
 package gym.com.br.mylocalgym;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import gym.com.br.mylocalgym.activitys.SearchActivity;
 import gym.com.br.mylocalgym.fragments.CheckinFragment;
 import gym.com.br.mylocalgym.fragments.DadosPessoaisFragment;
 import gym.com.br.mylocalgym.fragments.ExtratoMainFragment;
@@ -116,10 +118,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        boolean flag=false;
 
         switch (id)
         {
             case R.id.mn_buscar:
+                flag=true;
+                Intent Register = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(Register);
                 break;
 
             case R.id.mn_statusexame:
@@ -151,10 +157,14 @@ public class MainActivity extends AppCompatActivity
                 sessionManager.logoutUser();
                 break;
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+//        if (flag == false){
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
+//        return true;}
+//        return false;
     }
 
     public void openFragment(Fragment frag, String text){

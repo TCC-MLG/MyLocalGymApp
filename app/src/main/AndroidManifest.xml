@@ -18,6 +18,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,11 +38,13 @@
         <activity android:name=".activitys.RegisterActivity" />
         <activity android:name=".activitys.Mostra_Activity" />
 
+
         <!-- <activity -->
         <!-- android:name=".MapsFragment" -->
         <!-- android:label="@string/title_activity_maps"> -->
         <!-- </activity> -->
         <activity android:name=".fragments.SaldoFragment" />
+        <activity android:name=".activitys.SearchActivity"></activity>
     </application>
 
 </manifest>
