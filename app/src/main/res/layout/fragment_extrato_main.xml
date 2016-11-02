@@ -52,10 +52,12 @@
         android:layout_height="850dp">
 
         <ListView
-            android:id="@android:id/list"
+            android:id="@+id/list_extrato"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content">
+
         </ListView>
+
     </FrameLayout>
 
 </LinearLayout>
