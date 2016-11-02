@@ -2,6 +2,8 @@ package gym.com.br.mylocalgym.activitys;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -27,9 +29,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         // Generate sample data
 
-        academiaNameList = new String[]{"Just Fit", "Smart Fit", "Mais ação",
-                "Aero Fitness", "Bem Estar", "Golds GYM", "Fitcare", "Alta Vida",
-                "Bony Fit","Olimpo","Agonn", "teste", "teste", "teste", "teste"};
+        academiaNameList = new String[]{"Unip", "Just Fit", "Smart Fit"};
 
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.s_listview);
@@ -49,6 +49,23 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         // Locate the EditText in listview_main.xml
         editsearch = (SearchView) findViewById(R.id.s_search);
         editsearch.setOnQueryTextListener(this);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String text = parent.getItemAtPosition(position).toString();
+                String s = (list.getItemAtPosition(position).toString());
+
+                switch (position){
+                    case 0: onItemSelecionado(s);
+                        break;
+                    case 1: onItemSelecionado(s);
+                        break;
+                    case 2: onItemSelecionado(s);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -68,5 +85,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         super.onBackPressed();
         finish();
     }
+
+    public void onItemSelecionado(String t){
+
+    }
+
 }
 

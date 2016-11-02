@@ -40,6 +40,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     private LatLng latLng;
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +55,9 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100,0 , this);
-            Toast.makeText(getActivity(), "Provider Habilitado", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(), "Provider Habilitado", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getActivity(), "Provider desabilitado :): ", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(), "Provider desabilitado :): ", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -82,6 +83,7 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setOnMarkerClickListener(this);
         mMap.setOnInfoWindowClickListener(this);
+        addAcademias();
 
         try {
             if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -91,15 +93,10 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
                 handleNewLocation(location);
                 //  convert the location object to a LatLng object that can be used by the map API
                 LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+                //add marker na posição atual
+                addMarker("Just fit", "Academia", currentPosition);
                 // zoom to the current location
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition,18));
-
-                double currentLatitude = location.getLatitude();
-                double currentLongitude = location.getLongitude();
-
-                this.latLng = new LatLng(currentLatitude, currentLongitude);
-
-                this.criarMarcacao();
 
             } else {
                 ActivityCompat.requestPermissions(getActivity(),
@@ -135,13 +132,13 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
         this.latLng = new LatLng(currentLatitude, currentLongitude);
 
-        if (!criado) {
-            options.position(latLng);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-        }else {
-            options.position(latLng);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-        }
+//        if (!criado) {
+//            options.position(latLng);
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+//        }else {
+//            options.position(latLng);
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+//        }
     }
 
     @Override
@@ -170,16 +167,17 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
     }
 
 
-    public void criarMarcacao(){
+    public void addAcademias(){
+        LatLng unip = new LatLng(-23.572740406928936, -46.63977709999995);
+        LatLng justfit = new LatLng(-23.572890806929, -46.640510199999994);
+        LatLng smartfit = new LatLng(-23.571475106928535, -46.64021439999999);
 
-        Marker marker = mMap.addMarker(new MarkerOptions()
-                .position(latLng)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_domain_black_24dp))
-                .snippet("razaoSocial")
-                .flat(true)
-                .title("Academia"));
-        marker.showInfoWindow();
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+        //add marker na unip
+        addMarker("Unip", "Academia", unip);
+        //add marker Just fit
+        addMarker("Just fit", "Academia", justfit);
+        //add marker Smart fit
+        addMarker("Smart fit", "Academia", smartfit);
 
     }
 
@@ -189,12 +187,12 @@ public class MapsFragment extends SupportMapFragment implements OnMapReadyCallba
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(getActivity(), "Provider Ativo :): "+ provider, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), "Provider Ativo :): "+ provider, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        Toast.makeText(getActivity(), "Provider desabilitado :): "+ provider, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), "Provider desabilitado :): "+ provider, Toast.LENGTH_LONG).show();
     }
 
     @Override
