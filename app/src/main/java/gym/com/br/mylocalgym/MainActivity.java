@@ -20,6 +20,7 @@ import java.util.HashMap;
 import gym.com.br.mylocalgym.activitys.SearchActivity;
 import gym.com.br.mylocalgym.fragments.CheckinFragment;
 import gym.com.br.mylocalgym.fragments.DadosPessoaisFragment;
+import gym.com.br.mylocalgym.fragments.ExameFragment;
 import gym.com.br.mylocalgym.fragments.ExtratoMainFragment;
 import gym.com.br.mylocalgym.fragments.MapsFragment;
 import gym.com.br.mylocalgym.fragments.SaldoFragment;
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.mn_statusexame:
+                openFragment(new ExameFragment(), "ExameFragment");
                 break;
 
             case R.id.mn_Saldo:

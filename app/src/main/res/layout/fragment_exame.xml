@@ -1,0 +1,95 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="gym.com.br.mylocalgym.fragments.ExameFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".fragments.SaldoFragment"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent" android:layout_height="50dp" android:gravity="center"
+            android:textSize="10sp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+
+    <ImageView
+        android:id="@+id/ex_Imagem"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/academia" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorlogo"
+            android:text="Em algumas academias pode ser obrigatorio possuir exame médico." />
+
+        <TextView
+            android:layout_width="fill_parent" android:layout_height="10dp" android:gravity="center"
+            android:textSize="10sp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/ex_BExame"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:hint="Buscar exame"
+                android:inputType="text"
+                android:layout_weight="0.97"
+                android:clickable="false"/>
+
+            <Button
+                android:id="@+id/ex_pegar_exame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecionar"
+                android:background="@color/colorlogin"
+                android:layout_marginTop="15dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent" android:layout_height="10dp" android:gravity="center"
+            android:textSize="10sp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_exStatus"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/ex_Status"
+                android:text="Não enviado"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Status do exame"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="fill_parent" android:layout_height="10dp" android:gravity="center"
+            android:textSize="10sp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+        <Button
+            android:id="@+id/ex_btnEnviar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorlogin"
+            android:text="Enviar" />
+
+    </LinearLayout>
+
+</FrameLayout>
