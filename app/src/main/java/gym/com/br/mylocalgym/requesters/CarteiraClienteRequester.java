@@ -5,6 +5,10 @@ import android.os.StrictMode;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+
+import gym.com.br.mylocalgym.Parameters.InserirSaldoParameter;
+import gym.com.br.mylocalgym.Parameters.SolicitarCheckinParameter;
 import gym.com.br.mylocalgym.models.SaldoCliente;
 import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
@@ -39,4 +43,30 @@ public class CarteiraClienteRequester {
         }
     }
 
+    public void inserirSlado(Integer clienteId, BigDecimal valor) {
+
+        this.ativarPolicy();
+
+        if (clienteId == null){
+
+            final String url = "http://192.168.43.64:8080/mylocalgym/resources/carteira/cliente/"+clienteId+"/inserir";
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+            InserirSaldoParameter parameter = new InserirSaldoParameter();
+
+            parameter.setValor(valor);
+
+            try {
+
+                Boolean saldo = restTemplate.postForObject(url, parameter, Boolean.class);
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+            }
+
+    }
 }

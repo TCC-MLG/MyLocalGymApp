@@ -9,15 +9,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+
 import gym.com.br.mylocalgym.R;
 import gym.com.br.mylocalgym.models.SaldoCliente;
 import gym.com.br.mylocalgym.services.CarteiraClienteService;
+import gym.com.br.mylocalgym.utils.SessionManager;
 
 public class SaldoFragment extends Fragment {
 
     private EditText sSaldo;
     private EditText sDate;
     private Button goRecarregar;
+
+    private Integer clienteId;
 
     private CarteiraClienteService service;
 
@@ -30,9 +36,11 @@ public class SaldoFragment extends Fragment {
         sDate = (EditText) rootview.findViewById(R.id.s_dat);
         goRecarregar = (Button) rootview.findViewById(R.id.s_Recarregar);
 
+        this.buscarSessao();
+
         this.service = new CarteiraClienteService();
 
-        SaldoCliente saldoCliente = this.service.buscarSaldoPorId(2l);
+        SaldoCliente saldoCliente = this.service.buscarSaldoPorId(clienteId.longValue());
 
         System.out.println("asdsa");
         if (saldoCliente != null){
@@ -45,12 +53,10 @@ public class SaldoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "Neste momento abre a pagina do Pagseguro!", Toast.LENGTH_LONG).show();
+                service = new CarteiraClienteService();
+                service.inserirSaldo(clienteId, new BigDecimal(50));
 
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                Fragment mFrag = new SaldoFragment();
-//                transaction.replace(R.id.conteiner, mFrag);
-//                transaction.commit();
+                Toast.makeText(getContext(), "Neste momento abre a pagina do Pagseguro!", Toast.LENGTH_LONG).show();
 
             }
 
@@ -59,6 +65,14 @@ public class SaldoFragment extends Fragment {
 
         return rootview;
 
+    }
+
+    private void buscarSessao() {
+
+        SessionManager sessionManager = new SessionManager(getContext());
+        // Pega da sessão as informações do usuário
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        clienteId = Integer.parseInt(user.get(sessionManager.KEY_ID));
     }
 
 }

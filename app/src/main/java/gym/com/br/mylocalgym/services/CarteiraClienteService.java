@@ -1,5 +1,7 @@
 package gym.com.br.mylocalgym.services;
 
+import java.math.BigDecimal;
+
 import gym.com.br.mylocalgym.models.SaldoCliente;
 import gym.com.br.mylocalgym.requesters.CarteiraClienteRequester;
 
@@ -19,4 +21,9 @@ public class CarteiraClienteService {
 
     }
 
+    public void inserirSaldo(Integer clienteId, BigDecimal valor) {
+
+        this.requester = new CarteiraClienteRequester();
+        this.requester.inserirSlado(clienteId, valor);
+    }
 }
