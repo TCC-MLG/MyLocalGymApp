@@ -14,7 +14,7 @@ public class ExtratoClientePresenter {
     private Integer idAcademia;
     private Integer idTransacao ;
     private String razaoSocial;
-    private BigDecimal valor;
+    private String valor;
 
     public ExtratoCliente convert(){
         ExtratoCliente extratoCliente = new ExtratoCliente();
@@ -61,11 +61,11 @@ public class ExtratoClientePresenter {
         this.razaoSocial = razaoSocial;
     }
 
-    public BigDecimal getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 }

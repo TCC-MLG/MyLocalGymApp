@@ -33,7 +33,7 @@ public class ExtratoClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/transacao/historico/cliente/"+2+"/"+20+"";
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/transacao/historico/cliente/"+id+"/"+dias+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -43,24 +43,20 @@ public class ExtratoClienteRequester {
             List<ExtratoCliente> clientes = new ArrayList<>();
             if (clientePresenters != null){
                 for (LinkedHashMap<String, Object> presenter : clientePresenters) {
-
                     clientes.add(this.convert(presenter));
-
                 }
 
                 return clientes;
             }
-
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
-        return null;
 
+        return null;
     }
 
     private ExtratoCliente convert(LinkedHashMap<String, Object> presenter){
 
-        System.out.print("");
        ExtratoCliente cliente = new ExtratoCliente(presenter.get("dataTransacao"), presenter.get("idAcademia"), presenter.get("idTransacao"), presenter.get("razaoSocial"), presenter.get("valor"));
 
         return cliente;

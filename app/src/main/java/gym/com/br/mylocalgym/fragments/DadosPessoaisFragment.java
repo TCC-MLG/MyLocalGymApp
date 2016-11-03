@@ -117,7 +117,6 @@ public class DadosPessoaisFragment extends Fragment {
             public void onClick(View v) {
                 foiFoto = false;
                 pegarImagem();
-
             }
         });
 

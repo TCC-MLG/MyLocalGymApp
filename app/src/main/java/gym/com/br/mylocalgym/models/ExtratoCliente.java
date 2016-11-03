@@ -12,7 +12,7 @@ public class ExtratoCliente {
     private Integer idAcademia;
     private Integer idTransacao ;
     private String razaoSocial;
-    private BigDecimal valor;
+    private Double valor;
 
     public ExtratoCliente(){}
 
@@ -22,7 +22,7 @@ public class ExtratoCliente {
         this.idAcademia = (Integer) idAcademia;
         this.idTransacao = (Integer) idTransacao;
         this.razaoSocial = (String) razaoSocial;
-        this.valor = (BigDecimal) valor;
+        this.valor = (Double) valor;
 
     }
 
@@ -58,11 +58,11 @@ public class ExtratoCliente {
         this.razaoSocial = razaoSocial;
     }
 
-    public BigDecimal getValor() {
-        return valor;
+    public String getValor() {
+        return valor != null ? valor.toString() : null;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
+    public void setValor(String valor) {
+        this.valor = valor != null ? Double.valueOf(valor): null;
     }
 }
