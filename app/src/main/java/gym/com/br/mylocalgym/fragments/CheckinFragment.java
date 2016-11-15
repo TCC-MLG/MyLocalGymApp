@@ -85,7 +85,7 @@ public class CheckinFragment extends Fragment{
         ck_NomeAc.setText(academia.getRazaoSocial() != null ? academia.getRazaoSocial().toString() : null);
         ck_EndAc.setText(academia.getEndereco() != null ? academia.getEndereco().toString() : null);
         ck_Preco.setText(academia.getValorServico() != null ? academia.getValorServico().toString() : null);
-        ck_Status.setText(academia.getFuncionamento() != null ? academia.getFuncionamento(): null);
+        ck_Status.setText("Aberto!");
         ck_Transaction.setText("Não enviada");
 
         handler = new Handler() {

@@ -40,24 +40,17 @@ public class SaldoFragment extends Fragment {
 
         this.service = new CarteiraClienteService();
 
-        SaldoCliente saldoCliente = this.service.buscarSaldoPorId(clienteId.longValue());
+        this.buscarSaldo();
 
-        System.out.println("asdsa");
-        if (saldoCliente != null){
-
-            sSaldo.setText(saldoCliente.getSaldo().toString());
-            sDate.setText(saldoCliente.getValidade());
-
-        }
         goRecarregar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
-                service = new CarteiraClienteService();
                 service.inserirSaldo(clienteId, new BigDecimal(50));
 
-                Toast.makeText(getContext(), "Neste momento abre a pagina do Pagseguro!", Toast.LENGTH_LONG).show();
+                buscarSaldo();
 
+                Toast.makeText(getContext(), "Saldo recarregado!", Toast.LENGTH_LONG).show();
             }
 
 
@@ -67,10 +60,23 @@ public class SaldoFragment extends Fragment {
 
     }
 
+    private void buscarSaldo() {
+
+        this.service = new CarteiraClienteService();
+
+        SaldoCliente saldoCliente = this.service.buscarSaldoPorId(clienteId.longValue());
+
+        if (saldoCliente != null){
+
+            sSaldo.setText(saldoCliente.getSaldo().toString());
+            sDate.setText(saldoCliente.getValidade());
+        }
+
+    }
+
     private void buscarSessao() {
 
         SessionManager sessionManager = new SessionManager(getContext());
-        // Pega da sessão as informações do usuário
         HashMap<String, String> user = sessionManager.getUserDetails();
         clienteId = Integer.parseInt(user.get(sessionManager.KEY_ID));
     }

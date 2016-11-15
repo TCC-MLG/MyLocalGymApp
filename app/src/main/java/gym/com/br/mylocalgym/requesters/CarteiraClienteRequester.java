@@ -47,26 +47,22 @@ public class CarteiraClienteRequester {
 
         this.ativarPolicy();
 
-        if (clienteId == null){
+        if (clienteId != null){
 
-            final String url = "http://192.168.43.64:8080/mylocalgym/resources/carteira/cliente/"+clienteId+"/inserir";
+            final String url = "http://192.168.43.64:8080/mylocalgym/resources/carteira/cliente/"+clienteId+"/inserir/"+valor+"";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
-            InserirSaldoParameter parameter = new InserirSaldoParameter();
-
-            parameter.setValor(valor);
-
             try {
 
-                Boolean saldo = restTemplate.postForObject(url, parameter, Boolean.class);
+                Boolean saldo = restTemplate.getForObject(url, Boolean.class);
 
             } catch (Exception e) {
 
                 e.printStackTrace();
 
             }
-            }
+        }
 
     }
 }
