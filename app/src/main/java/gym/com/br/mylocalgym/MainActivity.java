@@ -145,10 +145,6 @@ public class MainActivity extends AppCompatActivity
                 openFragment(new UltimasAcademiasFragment(), "UltimasAcademias");
                 break;
 
-            case R.id.mn_Checkin:
-                openFragment(new CheckinFragment(), "Checkin");
-                break;
-
             case R.id.mn_Dpessoais:
                 openFragment(new DadosPessoaisFragment(), "DPessoais");
                 break;
