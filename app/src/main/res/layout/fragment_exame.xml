@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/colorlogo"
-            android:text="Em algumas academias pode ser obrigatorio possuir exame médico." />
+            android:text="Em algumas academias será necessario possuir exame médico." />
 
         <TextView
             android:layout_width="fill_parent" android:layout_height="10dp" android:gravity="center"
@@ -48,6 +48,9 @@
                 android:hint="Buscar exame"
                 android:inputType="text"
                 android:layout_weight="0.97"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:clickable="false"/>
 
             <Button

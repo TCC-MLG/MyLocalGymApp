@@ -35,4 +35,17 @@ public class ClienteService {
         return this.clienteRequester.buscarDadosCliente(id);
     }
 
+    public boolean atualizarExame(Integer clienteId, byte[] exame) {
+
+        this.clienteRequester = new ClienteRequester();
+
+        return this.clienteRequester.atualizarExame(clienteId, exame);
+    }
+
+    public byte[] buscarExame(Integer clienteId) {
+
+        this.clienteRequester = new ClienteRequester();
+
+        return this.clienteRequester.buscarExame(clienteId);
+    }
 }

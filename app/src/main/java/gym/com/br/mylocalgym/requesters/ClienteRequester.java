@@ -7,10 +7,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
+import gym.com.br.mylocalgym.Parameters.AlterarExameParameter;
 import gym.com.br.mylocalgym.Parameters.CadastrarClienteParameter;
 import gym.com.br.mylocalgym.models.CadastrarCliente;
 import gym.com.br.mylocalgym.models.DadosCliente;
 import gym.com.br.mylocalgym.presenters.DadosClientePresenter;
+import gym.com.br.mylocalgym.presenters.ExamePresenter;
 import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
 /**
@@ -75,6 +77,46 @@ public class ClienteRequester {
             DadosClientePresenter clientePresenter = restTemplate.getForObject(url, DadosClientePresenter.class);
 
             return clientePresenter != null ?  clientePresenter.convert() : null;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean atualizarExame(Integer clienteId, byte[] exame) {
+
+        this.ativarPolicy();
+
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+clienteId+"/alterar/exame";
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        boolean alterado =false;
+        try {
+
+            AlterarExameParameter parameter = new AlterarExameParameter();
+            parameter.setExame(exame);
+
+            alterado = restTemplate.postForObject(url,parameter, Boolean.class);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return alterado;
+    }
+
+    public byte[] buscarExame(Integer clienteId) {
+
+        this.ativarPolicy();
+
+        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+clienteId+"/exame";
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+        try{
+            ExamePresenter examePresenter = restTemplate.getForObject(url, ExamePresenter.class);
+
+            return examePresenter != null ?  examePresenter.getExame() : null;
         }catch (Exception e){
             e.printStackTrace();
             return null;
