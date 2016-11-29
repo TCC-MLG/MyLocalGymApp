@@ -5,15 +5,12 @@ import android.os.StrictMode;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-
 import gym.com.br.mylocalgym.Parameters.AlterarExameParameter;
 import gym.com.br.mylocalgym.Parameters.CadastrarClienteParameter;
 import gym.com.br.mylocalgym.models.CadastrarCliente;
 import gym.com.br.mylocalgym.models.DadosCliente;
 import gym.com.br.mylocalgym.presenters.DadosClientePresenter;
 import gym.com.br.mylocalgym.presenters.ExamePresenter;
-import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
 /**
  * Created by Luciano on 12/10/2016.
@@ -30,7 +27,7 @@ public class ClienteRequester {
     public boolean cadastrarCliente(CadastrarCliente cliente) {
 
         this.ativarPolicy();
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/cadastrar";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/cliente/cadastrar";
         CadastrarClienteParameter parameter = new CadastrarClienteParameter();
         parameter.createParameter(cliente);
 
@@ -50,7 +47,7 @@ public class ClienteRequester {
     public boolean alterarCliente(Integer id, DadosCliente dadosCliente){
 
         this.ativarPolicy();
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+id+"/alterar";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/cliente/"+id+"/alterar";
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -69,7 +66,7 @@ public class ClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+id+"";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/cliente/"+id+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -87,7 +84,7 @@ public class ClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+clienteId+"/alterar/exame";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/cliente/"+clienteId+"/alterar/exame";
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -109,7 +106,7 @@ public class ClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/cliente/"+clienteId+"/exame";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/cliente/"+clienteId+"/exame";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 

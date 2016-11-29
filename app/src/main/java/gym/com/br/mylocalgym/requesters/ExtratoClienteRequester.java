@@ -1,7 +1,6 @@
 package gym.com.br.mylocalgym.requesters;
 
 import android.os.StrictMode;
-import android.os.SystemClock;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -9,13 +8,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
 
-import gym.com.br.mylocalgym.Parameters.CadastrarClienteParameter;
-import gym.com.br.mylocalgym.models.CadastrarCliente;
 import gym.com.br.mylocalgym.models.ExtratoCliente;
-import gym.com.br.mylocalgym.presenters.ExtratoClientePresenter;
-import gym.com.br.mylocalgym.presenters.LoginPresenter;
 
 /**
  * Created by Matheus on 15/10/2016.
@@ -33,7 +27,7 @@ public class ExtratoClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/transacao/historico/cliente/"+id+"/"+dias+"";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/transacao/historico/cliente/"+id+"/"+dias+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 

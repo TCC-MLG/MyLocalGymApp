@@ -7,9 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import gym.com.br.mylocalgym.Parameters.SolicitarCheckinParameter;
 import gym.com.br.mylocalgym.models.DadosAcademia;
-import gym.com.br.mylocalgym.models.SaldoCliente;
 import gym.com.br.mylocalgym.presenters.DadosAcademiaPresenter;
-import gym.com.br.mylocalgym.presenters.SaldoClientePresenter;
 
 /**
  * Created by Matheus on 23/10/2016.
@@ -31,7 +29,7 @@ public class CheckinRequester {
             return null;
         }
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/checkin/solicitar";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/checkin/solicitar";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -55,7 +53,7 @@ public class CheckinRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -74,7 +72,7 @@ public class CheckinRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.64:8080/mylocalgym/resources/academia/"+nome+"";
+        final String url = "http://192.168.43.220:8080/mylocalgym/resources/academia/"+nome+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
