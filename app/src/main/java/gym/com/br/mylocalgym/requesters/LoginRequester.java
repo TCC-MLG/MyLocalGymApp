@@ -27,7 +27,7 @@ public class LoginRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.220:8080/mylocalgym/resources/login/autenticar/"+email+"/"+senha+"";
+        final String url = "http://10.48.12.162:8080/mylocalgym/resources/login/autenticar/"+email+"/"+senha+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 

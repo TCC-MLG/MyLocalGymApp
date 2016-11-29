@@ -23,22 +23,21 @@
             android:layout_height="wrap_content"
             android:text="Ultimas academias"
             android:textColor="@color/colorlogin"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="fill_parent" android:id="@+id/teste" android:layout_height="10dp" android:gravity="center"
-            android:textSize="10sp" android:paddingTop="10dp" android:paddingBottom="10dp"/>
+
         <FrameLayout
-            android:id="@+id/FrameLayout1"
+            android:id="@+id/FrameLayout2"
             android:layout_width="match_parent"
             android:layout_height="850dp">
 
             <ListView
-                android:id="@android:id/list"
+                android:id="@+id/list_academias"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content">
+
             </ListView>
+
         </FrameLayout>
 
     </LinearLayout>

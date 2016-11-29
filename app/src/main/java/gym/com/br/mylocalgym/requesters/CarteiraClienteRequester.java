@@ -27,7 +27,7 @@ public class CarteiraClienteRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.220:8080/mylocalgym/resources/carteira/cliente/saldo/"+id+"";
+        final String url = "http://10.48.12.162:8080/mylocalgym/resources/carteira/cliente/saldo/"+id+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -47,7 +47,7 @@ public class CarteiraClienteRequester {
 
         if (clienteId != null){
 
-            final String url = "http://192.168.43.220:8080/mylocalgym/resources/carteira/cliente/"+clienteId+"/inserir/"+valor+"";
+            final String url = "http://10.48.12.162:8080/mylocalgym/resources/carteira/cliente/"+clienteId+"/inserir/"+valor+"";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 

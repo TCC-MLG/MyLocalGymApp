@@ -29,7 +29,7 @@ public class CheckinRequester {
             return null;
         }
 
-        final String url = "http://192.168.43.220:8080/mylocalgym/resources/checkin/solicitar";
+        final String url = "http://10.48.12.162:8080/mylocalgym/resources/checkin/solicitar";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -53,7 +53,7 @@ public class CheckinRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.220:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
+        final String url = "http://10.48.12.162:8080/mylocalgym/resources/checkin/solicitar/status/"+clienteId+"/"+checkinId+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
@@ -72,7 +72,7 @@ public class CheckinRequester {
 
         this.ativarPolicy();
 
-        final String url = "http://192.168.43.220:8080/mylocalgym/resources/academia/"+nome+"";
+        final String url = "http://10.48.12.162:8080/mylocalgym/resources/academia/"+nome+"";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
